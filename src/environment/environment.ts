@@ -1,5 +1,5 @@
 export const environment = {
     // BaseURL: "http://nearfreelancer.runasp.net"
-    BaseURL: "http://localhost:5104"
+    BaseURL: "https://localhost:44349"
 
 };
