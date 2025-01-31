@@ -2,13 +2,21 @@ import daisyui from "daisyui";
 
 module.exports = {
   content: [
-    "./src/**/*.{html,ts}", 
+    "./src/**/*.{html,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: '#FFD700',
+        secondary: '#000',
+      },
+      fontFamily: {
+        sans: ['Poppins', 'sans-serif'],
+      },
+    },
   },
-  plugins: [daisyui], // Add plugins array here
+  plugins: [daisyui],
   daisyui: {
-    themes: ["light","night"], // Specify the themes here
+    themes: ["light","night"],
   },
 }
