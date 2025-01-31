@@ -4,7 +4,7 @@
       <!-- Loop through destinations -->
       <div *ngFor="let destination of Destinations" class="card glass w-full">
         <figure>
-          <img [src]="destination.images.length > 0 ? destination.images[0] : 'assets/default-image.jpg'"
+          <img [src]="destination.imagePath.length > 0 ? destination.imagePath[0] : 'assets/default-image.jpg'"
                alt="{{ destination.name || 'No Name' }}"
                class="w-full h-48 object-cover" />
         </figure>
@@ -21,8 +21,8 @@
         </div>
       </div>
     </div>
-  
-    <!-- Fallback if no data is available -->
+
+
     <ng-template #noData>
       <p class="text-center text-gray-600">No destinations available.</p>
     </ng-template>
