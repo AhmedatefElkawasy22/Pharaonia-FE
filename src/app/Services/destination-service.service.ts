@@ -9,16 +9,16 @@ import { Observable } from 'rxjs';
 })
 
 export class DestinationServiceService {
-  
+
   constructor(private _http: HttpClient) { }
 
-  
+
   GetDestinations():Observable<Destination[]>
   {
     return this._http.get<Destination[]>(`${environment.BaseURL}/Get-All-Destinations`);
   }
 
- 
+
 
   GetDestinationById(id:number):Observable<Destination>
   {
