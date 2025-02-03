@@ -1,5 +1,4 @@
 export const environment = {
-    // BaseURL: "http://nearfreelancer.runasp.net"
-    BaseURL: "https://localhost:44349"
-
+     BaseURL: "http://pharaonia.runasp.net"
+    // BaseURL: "https://localhost:44349"
 };

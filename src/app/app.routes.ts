@@ -46,7 +46,7 @@ export const routes: Routes = [
         title: 'All Destinations',
       },
       {
-        path: 'destination/:destinationId',
+        path: 'destination/:DestinationID',
         component: OneDestinationComponent,
         title: 'Destination',
       },

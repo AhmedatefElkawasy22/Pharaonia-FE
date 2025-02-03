@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DestinationServiceService } from '../../Services/destination-service.service';
 import { Destination } from '../../Models/destination';
 import { NgFor, NgIf } from '@angular/common';
@@ -20,17 +20,17 @@ export class DestinationsComponent implements OnInit {
   ngOnInit(): void {
     this._DestinationService.GetDestinations().subscribe({
       next: (data) => {
-        console.log('Data received:', data);
+        // console.log('Data received:', data);
         this.Destinations = data
       },
       error: (err) => {
-        console.error('Error fetching destinations:', err);
+        // console.error('Error fetching destinations:', err);
         this.Destinations = [];
       }
     });
   }
 
-  go(id: number) {
-    this._router.navigate(['/destination', id]);
+  go(DestinationID: number) {
+    this._router.navigateByUrl(`/destination/${DestinationID}`);
   }
 }

@@ -1,6 +1,7 @@
 import { DestinationServiceService } from './../../Services/destination-service.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Destination } from '../../Models/destination';
 
 @Component({
   selector: 'app-one-destination',
@@ -10,27 +11,23 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './one-destination.component.css',
 })
 export class OneDestinationComponent implements OnInit {
-  destination: any;
-   destinationId: number | null = null;
-  // Destination: any = {};
+  destination: Destination | null = null; 
+  destinationId: number = 0;
 
   constructor(private route: ActivatedRoute, private destinationService: DestinationServiceService) {}
 
   ngOnInit(): void {
-     this.destinationId = Number(this.route.snapshot.paramMap.get('id'));
-
-
-    this.destinationService.GetDestinationById(this.destinationId).subscribe({
-      next: (data) => {
-        this.destination = data;
-      },
-      error: (error) => {
-        console.error('Error fetching destination data:', error);
-      },
-      complete: () => {
-        console.log('Fetching destination data completed.');
-      },
-    });
-
+    const id = this.route.snapshot.paramMap.get('DestinationID'); 
+    this.destinationId = id ? Number(id) : 0;  
+    if (this.destinationId > 0) {
+      this.destinationService.GetDestinationById(this.destinationId).subscribe({
+        next: (data) => {
+          this.destination = data;
+        },
+        error: (error) => {
+          console.error('Error fetching destination data:', error);
+        }
+      });
+    }
   }
 }
