@@ -1,11 +1,26 @@
-<div class="container mx-auto p-6">
+<!-- <div class="container mx-auto p-6">
 
   <h1 class="text-4xl font-bold text-gray-800">{{ destination.name }}</h1>
   <p class="text-lg text-gray-600 mt-4">{{ destination.description }}</p>
 
 </div>
+ -->
+
+ <div class="container mx-auto p-6">
+ <div *ngIf="destination; else loading">
+  <h1>{{ destination?.name }}</h1>
+  <p>{{ destination?.description }}</p>
+  <div *ngFor="let img of destination.images">
+    <img [src]="img" alt="Destination Image" />
+  </div>
+</div>
 
 
+<ng-template #loading>
+  <p>Loading destination details...</p>
+</ng-template>
+
+ </div>
 <!-- <div class="carousel w-full">
   <div id="item1" class="carousel-item w-full">
     <img
