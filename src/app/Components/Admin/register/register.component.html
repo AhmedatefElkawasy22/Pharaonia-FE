@@ -1,1 +1,118 @@
-<p>register works!</p>
+<div class="register-page min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4">
+    <div
+        class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl bg-white dark:bg-gray-800 shadow-lg rounded-xl overflow-hidden">
+        <div class="hidden md:block">
+            <img src="/welcome.jpg" class="w-full h-full object-cover" alt="Welcome Image" />
+        </div>
+
+        <!-- Registration Form -->
+        <div class="p-8">
+            <h2 class="text-2xl font-semibold text-center mb-6 text-gray-800 dark:text-gray-200">Register</h2>
+            <form [formGroup]="UserRegisterForm" (ngSubmit)="onSubmit()" class="space-y-4">
+
+                <!-- Name Input -->
+                <div>
+                    <label for="Name" class="block text-sm font-medium text-gray-700">Name</label>
+                    <input type="text" id="Name" formControlName="Name"
+                        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Enter your Name" />
+                    <div *ngIf="UserRegisterForm.get('Name')?.touched">
+                        <p *ngIf="UserRegisterForm.get('Name')?.errors?.['required']" class="text-red-500 text-sm mt-1">
+                            Name is required.</p>
+                        <p *ngIf="UserRegisterForm.get('Name')?.errors?.['pattern']" class="text-red-500 text-sm mt-1">
+                            Name must contain only alphabets and numbers (3-50 characters).</p>
+                        <p *ngIf="UserRegisterForm.get('Name')?.errors?.['minlength']"
+                            class="text-red-500 text-sm mt-1">Name must be at least 5 characters long.</p>
+                    </div>
+                </div>
+                <!-- email Input -->
+                <div>
+                    <label for="Email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="text" id="Email" formControlName="Email"
+                        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Enter your Email" />
+                    <div *ngIf="UserRegisterForm.get('Email')?.touched">
+                        <p *ngIf="UserRegisterForm.get('Email')?.errors?.['required']"
+                            class="text-red-500 text-sm mt-1">Email is required.</p>
+                        <p *ngIf="UserRegisterForm.get('Email')?.errors?.['pattern']" class="text-red-500 text-sm mt-1">
+                            Email must be valid.</p>
+                        <p *ngIf="UserRegisterForm.get('Email')?.errors?.['minlength']"
+                            class="text-red-500 text-sm mt-1">Email must be at least 5 characters long.</p>
+                    </div>
+                </div>
+
+                <!-- Phone Number Input -->
+                <div>
+                    <label for="PhoneNumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                    <div class="flex gap-2 mt-1">
+                        <select id="countryCode"
+                            class="w-36 px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                            [(ngModel)]="codeOfCountry" [ngModelOptions]="{ standalone: true }">
+                            <option value="">Select Code</option>
+                            <option *ngFor="let country of countryCodes" [value]="country.code">{{ country.name }} ({{
+                                country.code }})</option>
+                        </select>
+
+                        <input type="text" id="PhoneNumber" formControlName="PhoneNumber"
+                            class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Enter your phone number" />
+                    </div>
+                    <div *ngIf="UserRegisterForm.get('PhoneNumber')?.touched">
+                        <p *ngIf="UserRegisterForm.get('PhoneNumber')?.errors?.['required']"
+                            class="text-red-500 text-sm mt-1">Phone number is required.</p>
+                        <p *ngIf="UserRegisterForm.get('PhoneNumber')?.errors?.['pattern']"
+                            class="text-red-500 text-sm mt-1">Enter a valid phone number (10-15 digits).</p>
+                    </div>
+                </div>
+
+
+                <!-- Password -->
+                <div class="mt-3">
+                    <label for="Password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="Password" id="Password" formControlName="Password"
+                        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Enter Password" />
+                    <div *ngIf="UserRegisterForm.get('Password')?.touched">
+                        <div *ngIf="UserRegisterForm.get('Password')?.errors?.['required']"
+                            class="text-red-500 text-sm mt-1">
+                            Password is required.
+                        </div>
+                        <div *ngIf="UserRegisterForm.get('Password')?.errors?.['minlength']"
+                            class="text-red-500 text-sm mt-1">
+                            Password must be at least 8 characters long.
+                        </div>
+                        <div *ngIf="UserRegisterForm.get('Password')?.errors?.['pattern']"
+                            class="text-red-500 text-sm mt-1">
+                            Password must contain letters and numbers.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="mt-3">
+                    <label for="ConfirmPassword" class="block text-sm font-medium text-gray-700">Confirm
+                        Password</label>
+                    <input type="password" id="ConfirmPassword" formControlName="ConfirmPassword"
+                        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Confirm Password" />
+                    <div *ngIf="UserRegisterForm.get('ConfirmPassword')?.touched">
+                        <div *ngIf="UserRegisterForm.errors?.['passwordMismatch']" class="text-red-500 text-sm mt-1">
+                            Passwords do not match.
+                        </div>
+                        <div *ngIf="UserRegisterForm.get('ConfirmPassword')?.errors?.['required']"
+                            class="text-red-500 text-sm mt-1">
+                            Confirm Password is required.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button [disabled]="UserRegisterForm.invalid" type="submit"
+                    class="w-full py-3 bg-primary text-white font-semibold rounded-lg shadow hover:bg-primary-dark dark:bg-primary-dark dark:hover:bg-primary">
+                    Register
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+

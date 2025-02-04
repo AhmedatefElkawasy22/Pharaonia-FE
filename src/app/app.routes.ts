@@ -12,6 +12,9 @@ import { ContactUsComponent } from './Components/contact-us/contact-us.component
 import { GalleryComponent } from './Components/gallery/gallery.component';
 import { LoginComponent } from './Components/Admin/login/login.component';
 import { RegisterComponent } from './Components/Admin/register/register.component';
+import { AdminLayoutComponent } from './Components/Admin/admin-layout/admin-layout.component';
+import { AdminHomeComponent } from './Components/Admin/admin-home/admin-home.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -20,10 +23,17 @@ export const routes: Routes = [
     title: 'Login',
   },
   {
-    path: 'admin/register',
-    component: RegisterComponent,
-    title: 'Register',
+    path: 'admin',
+    component: AdminLayoutComponent,
+    title: 'Admin',
+    canActivate: [AuthGuard], 
+    children: [
+      { path: '', redirectTo: '/admin/home', pathMatch: 'full' },
+      { path: 'home', component: AdminHomeComponent, title: 'Admin-Home' },
+      { path: 'register', component: RegisterComponent, title: 'Admin-Register' },
+    ]
   },
+  
   {
     path: '',
     component: LayoutComponent,

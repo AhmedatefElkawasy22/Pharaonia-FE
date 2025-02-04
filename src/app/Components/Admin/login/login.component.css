@@ -1,0 +1,88 @@
+body {
+    background-color: #f7f7f7;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .login-page, .register-page {
+    /* background-image: url('/login.jpg'); */
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .login-box, .register-box {
+    background-color: #ffffff;
+    border-radius: 10px;
+    animation: fadeIn 1.2s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .login-box:hover, .register-box:hover {
+    transform: scale(1.02);
+  }
+  
+  form {
+    animation: slideIn 1.2s ease-in-out;
+  }
+  
+  form .form-control {
+    border-radius: 5px;
+  }
+  
+  form button {
+    border-radius: 25px;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  form button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideIn {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+
+  @media (max-width: 768px) {
+    .login-box, .register-box {
+      padding: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    h2 {
+      font-size: 1.8rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    h2 {
+      font-size: 1.5rem;
+    }
+    
+    .btn {
+      font-size: 1rem;
+    }
+  }
+  

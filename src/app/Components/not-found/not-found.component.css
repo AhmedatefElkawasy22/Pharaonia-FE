@@ -1,0 +1,33 @@
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; 
+    height: 100vh;
+    background-image: url("/NotFound.gif");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0.5); 
+    padding-bottom: 20px; 
+    position: relative;
+  }
+  
+  a.btn {
+    font-size: 1.25rem;
+    padding: 12px 24px;
+    border: 2px solid #fff; 
+    color: #fff; 
+    background-color: rgba(0, 0, 0, 0.7); 
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    position: absolute; 
+    bottom: 20px; 
+  }
+  
+  a.btn:hover {
+    background-color: #fff; 
+    color: #000; 
+    border-color: #000; 
+    transform: scale(1.05); 
+  }
+  

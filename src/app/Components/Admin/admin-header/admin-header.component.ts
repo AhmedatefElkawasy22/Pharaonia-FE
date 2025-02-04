@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
+import { AccountServiceService } from '../../../Services/account/account-service.service';
 
 @Component({
-  selector: 'app-header',
+  selector: 'app-admin-header',
   standalone: true,
-  imports: [RouterLink],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  imports: [],
+  templateUrl: './admin-header.component.html',
+  styleUrl: './admin-header.component.css'
 })
-export class HeaderComponent implements OnInit {
-  isDarkMode: boolean = false;
+export class AdminHeaderComponent implements OnInit {
+isDarkMode: boolean = false;
+
+  constructor(private _router: Router,private _accountService: AccountServiceService) {}
 
   ngOnInit(): void {
     // Check the saved theme in localStorage
@@ -36,9 +39,8 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-
-
+  logout() {
+    this._accountService.logout();
+  }
   
-  
-
 }
