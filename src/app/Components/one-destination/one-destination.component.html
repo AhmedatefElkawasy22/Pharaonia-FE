@@ -1,51 +1,26 @@
-<!-- <div class="container mx-auto p-6">
+<!-- <div class="container mx-auto p-6 mt-12 mb-10">
 
-  <h1 class="text-4xl font-bold text-gray-800">{{ destination.name }}</h1>
-  <p class="text-lg text-gray-600 mt-4">{{ destination.description }}</p>
+  <h1 class="text-4xl font-bold">{{ destination?.name }}</h1>
+  <p class="text-lg  mt-4">{{ destination?.description }}</p>
 
 </div>
  -->
 
- <div class="container mx-auto p-6">
- <div *ngIf="destination; else loading">
-  <h1>{{ destination?.name }}</h1>
-  <p>{{ destination?.description }}</p>
-  <div *ngFor="let img of destination.images">
-    <img [src]="img" alt="Destination Image" />
+
+
+ <div class="container mx-auto p-6 mt-12 mb-10 bg-base-200 shadow-lg rounded-2xl">
+  <h1 class="text-5xl font-extrabold text-primary mb-4 text-center">
+    {{ destination?.name }}
+  </h1>
+  <p class="text-lg  leading-relaxed tracking-wide text-justify">
+    {{ destination?.description }}
+  </p>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <img
+      *NgFor="let image of destination?.images.slice(0, 3)"
+      [src]=""
+      alt="{{ destination?.name }}"
+      class="w-full h-60 object-cover rounded-xl shadow-md"
+    />
   </div>
 </div>
-
-
-<ng-template #loading>
-  <p>Loading destination details...</p>
-</ng-template>
-
- </div>
-<!-- <div class="carousel w-full">
-  <div id="item1" class="carousel-item w-full">
-    <img
-      src=""
-      class="w-full" />
-  </div>
-  <div id="item2" class="carousel-item w-full">
-    <img
-      src=""
-      class="w-full" />
-  </div>
-  <div id="item3" class="carousel-item w-full">
-    <img
-      src=""
-      class="w-full" />
-  </div>
-  <div id="item4" class="carousel-item w-full">
-    <img
-     src=""
-      class="w-full" />
-  </div>
-</div>
-<div class="flex w-full justify-center gap-2 py-2">
-  <a href="#item1" class="btn btn-xs">1</a>
-  <a href="#item2" class="btn btn-xs">2</a>
-  <a href="#item3" class="btn btn-xs">3</a>
-  <a href="#item4" class="btn btn-xs">4</a>
-</div> -->
