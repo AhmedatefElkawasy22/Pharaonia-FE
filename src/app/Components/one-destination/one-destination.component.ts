@@ -11,14 +11,15 @@ import { Destination } from '../../Models/destination';
   styleUrl: './one-destination.component.css',
 })
 export class OneDestinationComponent implements OnInit {
-  destination: Destination | null = null; 
+  destination: Destination | null = null;
   destinationId: number = 0;
+
 
   constructor(private route: ActivatedRoute, private destinationService: DestinationServiceService) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('DestinationID'); 
-    this.destinationId = id ? Number(id) : 0;  
+    const id = this.route.snapshot.paramMap.get('DestinationID');
+    this.destinationId = id ? Number(id) : 0;
     if (this.destinationId > 0) {
       this.destinationService.GetDestinationById(this.destinationId).subscribe({
         next: (data) => {
