@@ -1,64 +1,42 @@
 <div
-  class="container  mx-auto p-8 mt-12 mb-10 bg-gradient-to-b from-gray-800 to-gray-900 shadow-lg rounded-2xl text-white"
->
-   <div class="NC">
-  <h1 class="text-5xl font-extrabold text-primary mb-6 text-center uppercase tracking-wide drop-shadow-lg bg-gray-800">
-    {{ destination?.name }}
-  </h1>
+  class="container  mx-auto p-8 mt-12 mb-10 bg-gradient-to-b from-gray-800 to-gray-900 shadow-lg rounded-2xl text-white">
+  <div class="NC">
+    <h1
+      class="text-5xl font-extrabold text-primary mb-6 text-center uppercase tracking-wide drop-shadow-lg bg-gray-800">
+      {{ destination?.name }}
+      <div class="badge badge-dash badge-primary">{{destination?.destinationCategory}}</div>
+    </h1>
+  </div>
 
-  <div class="badge badge-dash badge-primary">{{destination?.destinationCategory}}</div>
-</div>
-
-   <div class="con">
-
-
-  <p class="text-lg leading-relaxed tracking-wide text-justify text-gray-300 px-6 mb-8">
-    {{ destination?.description }}
-  </p>
-
-  <!-- Image Carousel -->
-  <div class="carousel-item overflow-hidden rounded-xl shadow-lg">
-    <div
-      *ngFor="let img of destination?.imagePath; let i = index"
-      [id]="'slide' + (i + 1)"
-      class="carousel-item relative w-full"
-    >
-
-      <img
-        [src]="img"
-        class="w-full rounded-lg shadow-lg border border-gray-700  "
-        alt="Destination Image"
-        style="max-height: 550px; max-width: auto;"
-      />
+  <div class="con">
 
 
-      <div
-        class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"
-      >
-        <!-- Previous Button -->
-        <a
-          *ngIf="i > 0"
-          href="#"
-          class="btn btn-circle btn-outline border-blue-800 hover:bg-primary hover:text-white     color: black;
-           border: 3px solid;
-          border: none;
-          font-size: 22px;
-    "
-          (click)="scrollToSlide(i - 1, $event)"
-        >
-          ❮
-        </a>
+    <p class="text-lg leading-relaxed tracking-wide text-justify text-gray-300 px-6 mb-8">
+      {{ destination?.description }}
+    </p>
 
-        <!-- Next Button -->
-         <a
-          *ngIf="i < (destination?.imagePath?.length || 0) - 1"
-          href="#"
-          class="btn btn-circle btn-outline border-blue-800 hover:bg-primary hover:text-slate-500"
-          (click)="scrollToSlide(i + 1, $event)"
-        >
-          ❯
-        </a>
-      </div>
+    <!-- Image Carousel -->
+    <div class="carousel-item overflow-hidden rounded-xl shadow-lg">
+      <div *ngFor="let img of destination?.imagePath; let i = index" [id]="'slide' + (i + 1)"
+        class="carousel-item relative w-full">
+
+        <img [src]="img" class="w-full rounded-lg shadow-lg border border-gray-700  " alt="Destination Image"
+          style="max-height: 550px; max-width: auto;" />
+
+
+        <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+          <!-- Previous Button -->
+          <a *ngIf="i > 0" href="#" class="btn btn-circle btn-outline border-blue-800"
+            (click)="scrollToSlide(i - 1, $event)">
+            ❮❮
+          </a>
+          <!-- Next Button -->
+          <a *ngIf="i < (destination?.imagePath?.length || 0) - 1" href="#"
+            class="btn btn-circle btn-outline border-blue-800"
+             (click)="scrollToSlide(i + 1, $event)">
+            ❯❯
+          </a>
+        </div>
       </div>
     </div>
   </div>

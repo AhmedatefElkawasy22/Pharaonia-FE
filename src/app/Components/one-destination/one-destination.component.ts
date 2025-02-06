@@ -33,7 +33,8 @@ export class OneDestinationComponent implements OnInit {
         }
       });
     }
-  }
+
+  } 
 
 
   scrollToSlide(index: number, event: Event): void {

@@ -1,8 +1,14 @@
 .carousel-item {
   transition: transform 0.5s ease-in-out;
 }
-.NC{
 
+.NC {
+  text-align: center;
+}
 
-text-align: center;
+.btn-circle {
+       color: black;
+       border: 3px solid;
+       border: none;
+       font-size: 22px;
 }
