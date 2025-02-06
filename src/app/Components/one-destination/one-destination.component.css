@@ -1,0 +1,10 @@
+.carousel-item {
+  transition: transform 0.5s ease-in-out;
+}
+.text-5xl {
+     display:inline;
+
+justify-content: center;
+align-items: center;
+
+}
