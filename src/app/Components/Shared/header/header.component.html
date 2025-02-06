@@ -30,15 +30,22 @@
       <ul class="menu menu-horizontal px-1">
         <li><a>Item 1</a></li>
         <li>
-          <details>
+          <details #destinationDropdown>
             <summary>Destinations</summary>
-            <ul class="p-2">
-              <li routerLink="/destination" ><a>All Destinations</a></li>
-              <li routerLink="/destination/egypt" ><a>Destinations In Egypt</a></li>
-              <li routerLink="/destination/outside-egypt" ><a>Destinations out side Egypt</a></li>
+            <ul class="p-2 z-[10]">
+              <li routerLink="/destination" (click)="closeDropdown(destinationDropdown)">
+                <a>All Destinations</a>
+              </li>
+              <li routerLink="/destination-egypt" (click)="closeDropdown(destinationDropdown)">
+                <a>Destinations In Egypt</a>
+              </li>
+              <li routerLink="/destination-outside-egypt" (click)="closeDropdown(destinationDropdown)">
+                <a>Destinations Outside Egypt</a>
+              </li>
             </ul>
           </details>
         </li>
+        
         <li><a>Item 3</a></li>
       </ul>
     </div>

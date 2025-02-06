@@ -5,7 +5,7 @@
   >
     <div
       *ngFor="let destination of Destinations"
-      class="light:bg-white-300 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden borderradius-12 transition duration-300"
+      class="card transition duration-300 transform hover:scale-105 hover:shadow-2xl"
     >
       <figure>
         <img
@@ -15,10 +15,10 @@
               : 'assets/default-image.jpg'
           "
           alt="{{ destination.name || 'No Name' }}"
-          class="w-full h-48 object-cover"
+          class="w-full h-48 object-cover rounded-t-lg"
         />
       </figure>
-      <div class="p-4">
+      <div class="p-4 text-center">
         <h2 class="text-xl font-bold text-gray-800 dark:text-white">
           {{ destination.name }}
         </h2>
@@ -28,18 +28,6 @@
 
         <button
           class="btn"
-          style="
-            width: 50%;
-            padding: 10px 0;
-            border: none;
-            border-radius: 20px;
-            font-size: 16px;
-            cursor: pointer;
-            left: 50%;
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
-          "
           (click)="go(destination.id)"
         >
           View Details
@@ -47,10 +35,11 @@
       </div>
     </div>
   </div>
-
+  
   <ng-template #noData>
     <p class="text-center text-gray-600 dark:text-gray-400">
       No destinations available.
     </p>
   </ng-template>
 </div>
+

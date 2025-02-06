@@ -1,0 +1,37 @@
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+.dark::bg-gray-800{
+  background-color: #1a202c;
+}
+.text-gray-800{
+  color: #5a6680;
+}
+
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 174, 255, 0.2);
+}
+
+.btn {
+  margin-top: 10px;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.5s ease;
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, #4338ca, #4f46e5);
+}
+

@@ -25,10 +25,11 @@ export class OneDestinationComponent implements OnInit {
     if (this.destinationId > 0) {
       this.destinationService.GetDestinationById(this.destinationId).subscribe({
         next: (data) => {
+          //console.log(data);
           this.destination = data;
         },
         error: (error) => {
-          console.error('Error fetching destination data:', error);
+          //console.error('Error fetching destination data:', error);
         }
       });
     }
@@ -36,7 +37,7 @@ export class OneDestinationComponent implements OnInit {
 
 
   scrollToSlide(index: number, event: Event): void {
-    event.preventDefault(); 
+    event.preventDefault();
     const element = document.getElementById('slide' + (index + 1));
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });

@@ -1,65 +1,38 @@
-.alert-dialog-container {
-  background: linear-gradient(145deg, #ffffff, #f1f1f1);
-  padding: 32px;
-  border-radius: 16px;
-  text-align: center;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 0.4s ease-in-out;
-  max-width: 400px;
-  margin: auto;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-mat-dialog-title {
-  color: #3f51b5;
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 16px;
-}
-
-mat-dialog-content {
-  font-size: 1.2rem;
-  color: #555;
-  margin-bottom: 24px;
-  line-height: 1.6;
-  font-weight: 500;
-}
-
-mat-dialog-actions {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-}
-
-button {
-  font-size: 1.1rem;
-  padding: 12px 24px;
-  border-radius: 8px;
-  transition: all 0.3s ease-in-out;
-  font-weight: 600;
-  border: none;
-  outline: none;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, #3f51b5, #5c6bc0);
-  color: #fff;
-  box-shadow: 0 5px 15px rgba(63, 81, 181, 0.3);
-}
-
-.btn-primary:hover {
-  background: linear-gradient(135deg, #303f9f, #3949ab);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(63, 81, 181, 0.4);
-}
-
-/* Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
+@layer components {
+  .alert-dialog-container {
+    @apply bg-gradient-to-br from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 
+           p-8 rounded-2xl text-center shadow-xl max-w-md mx-auto;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .text-primary-gradient {
+    @apply bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-blue-600 to-indigo-500 text-white 
+           px-5 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg;
+  }
+
+  .btn-primary:hover {
+    @apply bg-gradient-to-r from-indigo-500 to-blue-600 shadow-xl scale-105;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }

@@ -40,8 +40,8 @@ export class LoginComponent {
             this._router.navigate(['/admin/home']);
         },
         (error) => {
-           console.log('err', error);
-          this.openAlertDialog('Error', error);
+          //  console.log('err', error);
+          this.openAlertDialog('Error', error.error);
           this._router.navigate(['/admin/login']);
         }
       );

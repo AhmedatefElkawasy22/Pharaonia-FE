@@ -24,7 +24,6 @@ export class AccountServiceService {
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}`
       });
-
       return this._http.post(`${environment.BaseURL}/RegistrationAsAdmin`, body,{responseType: 'text' , headers});
     } else {
       this.logout();

@@ -38,6 +38,9 @@ export class HeaderComponent implements OnInit {
 
 
 
+  closeDropdown(detailsElement: HTMLDetailsElement) {
+    detailsElement.open = false;
+  }
   
   
 

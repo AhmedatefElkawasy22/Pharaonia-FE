@@ -18,11 +18,14 @@ export class DestinationServiceService {
     return this._http.get<Destination[]>(`${environment.BaseURL}/Get-All-Destinations`);
   }
 
-
-
   GetDestinationById(id:number):Observable<Destination>
   {
     return this._http.get<Destination>(`${environment.BaseURL}/Get-Destination-By-Id/${id}`);
+  }
+
+  GetDestinationBasedOnCategory(Category:number):Observable<Destination[]>
+  {
+    return this._http.get<Destination[]>(`${environment.BaseURL}/Get-Destinations-Based-On-Category/${Category}`);
   }
 
 }

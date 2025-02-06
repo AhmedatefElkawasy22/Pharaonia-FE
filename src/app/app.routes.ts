@@ -56,6 +56,15 @@ export const routes: Routes = [
         title: 'All Destinations',
       },
       {
+        path: 'destination-egypt',
+        component: DestinationsComponent,
+        title: 'Destinations In Egypt',
+      },
+      {
+        path: 'destination-outside-egypt',
+        component: DestinationsComponent,
+        title: 'Destinations Outisde Egypt',},
+      {
         path: 'destination/:DestinationID',
         component: OneDestinationComponent,
         title: 'Destination',
