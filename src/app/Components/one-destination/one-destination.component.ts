@@ -23,6 +23,7 @@ export class OneDestinationComponent implements OnInit {
     if (this.destinationId > 0) {
       this.destinationService.GetDestinationById(this.destinationId).subscribe({
         next: (data) => {
+          console.log(data);
           this.destination = data;
         },
         error: (error) => {

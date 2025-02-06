@@ -1,112 +1,57 @@
-/* General Dialog Container Styling */
-:host {
-  display: block;
-  width: 100%;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.mat-dialog-container {
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-  background: linear-gradient(135deg, #ffffff, #f9f9f9);
-  animation: fadeInUp 0.3s ease-out;
-}
-
-/* Title Styling */
-h2[mat-dialog-title] {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #222;
-  margin-bottom: 1rem;
-  text-align: center;
-  text-transform: capitalize;
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 0.5rem;
-}
-
-/* Message Content Styling */
-div[mat-dialog-content] {
-  margin: 1rem 0;
-  text-align: center;
-}
-
-div[mat-dialog-content] p {
-  font-size: 1.1rem;
-  color: #444;
-  line-height: 1.8;
-  font-weight: 500;
-  margin: 0;
-}
-
-/* Action Buttons Styling */
-div[mat-dialog-actions] {
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 2rem;
-}
-
-button[mat-button] {
-  min-width: 120px;
-  font-weight: 600;
-  border-radius: 8px;
-  padding: 0.7rem 1.2rem;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-/* Cancel Button */
-button.cancel-btn {
-  background-color: #e0e0e0;
-  color: #555;
-  border: 2px solid #ccc;
-}
-
-button.cancel-btn:hover {
-  background-color: #f1f1f1;
-  border-color: #bbb;
-}
-
-/* Accept Button */
-button.accept-btn {
-  background-color: #f44336;
-  color: #fff;
-  border: 2px solid #f44336;
-}
-
-button.accept-btn:hover {
-  background-color: #d32f2f;
-  border-color: #c62828;
-  box-shadow: 0 4px 15px rgba(244, 67, 54, 0.4);
-}
-
-/* Responsive Adjustments */
-@media screen and (max-width: 768px) {
-  .mat-dialog-container {
-    padding: 1.5rem;
+@layer components {
+  .alert-dialog-container {
+    @apply bg-gradient-to-br from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 
+           p-8 rounded-2xl text-center shadow-xl max-w-md mx-auto border border-gray-200 dark:border-gray-700;
   }
 
-  h2[mat-dialog-title] {
-    font-size: 1.5rem;
+  .text-primary-gradient {
+    @apply bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent;
   }
 
   div[mat-dialog-content] p {
-    font-size: 1rem;
+    @apply text-lg text-gray-700 dark:text-gray-300 font-medium leading-relaxed;
   }
 
-  button[mat-button] {
-    font-size: 0.9rem;
-    padding: 0.6rem 1rem;
+  div[mat-dialog-actions] {
+    @apply flex justify-center space-x-4 mt-6;
   }
-}
 
-/* Animation for Dialog Entrance */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
+  .cancel-btn {
+    @apply bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 
+           border border-gray-400 dark:border-gray-600 px-5 py-2 rounded-lg 
+           font-semibold transition-all duration-300 shadow-md;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .cancel-btn:hover {
+    @apply bg-gray-400 dark:bg-gray-600 border-gray-500 dark:border-gray-500 shadow-lg scale-105;
+  }
+
+  .accept-btn {
+    @apply bg-gradient-to-r from-red-500 to-red-700 text-white px-5 py-2 
+           rounded-lg font-semibold transition-all duration-300 shadow-md border border-red-600;
+  }
+
+  .accept-btn:hover {
+    @apply bg-gradient-to-r from-red-600 to-red-800 shadow-lg scale-105;
+  }
+
+  /* Fade-in Animation */
+  .animate-fade-in {
+    animation: fadeInUp 0.4s ease-in-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }

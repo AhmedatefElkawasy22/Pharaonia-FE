@@ -12,24 +12,50 @@ import { Router } from '@angular/router';
   styleUrl: './destinations.component.css'
 })
 export class DestinationsComponent implements OnInit {
-// [x: string]: TemplateRef<NgIfContext<boolean>>|null;
+  // [x: string]: TemplateRef<NgIfContext<boolean>>|null;
 
   Destinations: Destination[] = [];
   noData!: TemplateRef<NgIfContext<boolean>> | null;
 
-  constructor(private _DestinationService: DestinationServiceService, private _router: Router ) { }
+  constructor(private _DestinationService: DestinationServiceService, private _router: Router) { }
 
   ngOnInit(): void {
-    this._DestinationService.GetDestinations().subscribe({
-      next: (data) => {
-        // console.log('Data received:', data);
-        this.Destinations = data
-      },
-      error: (err) => {
-        // console.error('Error fetching destinations:', err);
-        this.Destinations = [];
-      }
-    });
+    const url = this._router.url;
+    // console.log(url);
+    if (url === '/destination-egypt')
+      this._DestinationService.GetDestinationBasedOnCategory(0).subscribe({
+        next: (data) => {
+          // console.log('Data received:', data);
+          this.Destinations = data
+        },
+        error: (err) => {
+          // console.error('Error fetching destinations:', err);
+          this.Destinations = [];
+        }
+      });
+    else if (url === '/destination-outside-egypt')
+      this._DestinationService.GetDestinationBasedOnCategory(1).subscribe({
+        next: (data) => {
+          // console.log('Data received:', data);
+          this.Destinations = data
+        },
+        error: (err) => {
+          // console.error('Error fetching destinations:', err);
+          this.Destinations = [];
+        }
+      });
+    else {
+      this._DestinationService.GetDestinations().subscribe({
+        next: (data) => {
+          // console.log('Data received:', data);
+          this.Destinations = data
+        },
+        error: (err) => {
+          // console.error('Error fetching destinations:', err);
+          this.Destinations = [];
+        }
+      });
+    }
   }
 
   go(DestinationID: number) {
