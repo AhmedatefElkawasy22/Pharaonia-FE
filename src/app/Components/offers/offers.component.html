@@ -1,1 +1,45 @@
-<p>offers works!</p>
+<div class="container mx-auto p-6 mt-12 mb-10">
+  <div
+    *ngIf="Offers.length > 0; else noData"
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+  >
+    <div
+      *ngFor="let offer of Offers"
+      class="card transition duration-300 transform hover:scale-105 hover:shadow-2xl relative"
+    >
+      <figure class="relative">
+        <img
+          [src]="
+            offer.images.length > 0
+              ? offer.images[0]
+              : 'assets/default-offer.jpg'
+          "
+          alt="{{offer.nameOfDestination || 'No Name'}}"
+          class="w-full h-48 object-cover rounded-t-lg"
+        />
+        <div
+          class="absolute top-2 right-2 bg-purple-600 text-white  font-bold w-14 h-12 flex items-center justify-center rounded-full animate-bounce shadow-xl"
+        >
+          {{ offer.price ? (offer.price | currency: 'USD') : 'N/A' }}
+        </div>
+      </figure>
+      <div class="p-4 text-center">
+        <h2 class="text-xl font-bold text-gray-800 dark:text-white">
+          {{ offer.nameOfDestination }}
+        </h2>
+        <div class="p-4 text-center">
+          <h2 class="text-xl font-bold text-gray-800 dark:text-white">
+            {{ offer.offerDuration }}
+          </h2>
+        </div>
+        <button class="btn" (click)="OfferDetail(offer.id)">View Offer</button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <div class="flex justify-center items-center h-screen">
+      <span class="loading loading-dots loading-2xl p-12 text-5xl"></span>
+    </div>
+  </ng-template>
+</div>

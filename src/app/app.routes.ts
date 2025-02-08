@@ -15,6 +15,7 @@ import { RegisterComponent } from './Components/Admin/register/register.componen
 import { AdminLayoutComponent } from './Components/Admin/admin-layout/admin-layout.component';
 import { AdminHomeComponent } from './Components/Admin/admin-home/admin-home.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { CommonModule } from '@angular/common';
 
 export const routes: Routes = [
   {
@@ -26,14 +27,18 @@ export const routes: Routes = [
     path: 'admin',
     component: AdminLayoutComponent,
     title: 'Admin',
-    canActivate: [AuthGuard], 
+    canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: '/admin/home', pathMatch: 'full' },
       { path: 'home', component: AdminHomeComponent, title: 'Admin-Home' },
-      { path: 'register', component: RegisterComponent, title: 'Admin-Register' },
-    ]
+      {
+        path: 'register',
+        component: RegisterComponent,
+        title: 'Admin-Register',
+      },
+    ],
   },
-  
+
   {
     path: '',
     component: LayoutComponent,
@@ -63,7 +68,8 @@ export const routes: Routes = [
       {
         path: 'destination-outside-egypt',
         component: DestinationsComponent,
-        title: 'Destinations Outisde Egypt',},
+        title: 'Destinations Outisde Egypt',
+      },
       {
         path: 'destination/:DestinationID',
         component: OneDestinationComponent,
@@ -91,7 +97,6 @@ export const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule, CommonModule],
 })
 export class AppRoutingModule {}
-

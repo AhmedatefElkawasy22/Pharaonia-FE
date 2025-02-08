@@ -1,4 +1,4 @@
-import { DestinationServiceService } from './../../Services/destination-service.service';
+import { DestinationServiceService } from '../../Services/destination.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Destination } from '../../Models/destination';
@@ -14,6 +14,8 @@ import { NgFor, NgIf } from '@angular/common';
 export class OneDestinationComponent implements OnInit {
   destination: Destination | null = null;
   destinationId: number = 0;
+  currentIndex: number = 0;
+  intervalId: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,7 +23,7 @@ export class OneDestinationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.startAutoScroll();
+
     const id = this.route.snapshot.paramMap.get('DestinationID');
     this.destinationId = id ? Number(id) : 0;
     if (this.destinationId > 0) {
@@ -35,9 +37,9 @@ export class OneDestinationComponent implements OnInit {
         },
       });
     }
+    this.startAutoScroll();
   }
-  currentIndex: number = 0;
-intervalId: any;
+
 
 
 
@@ -49,7 +51,7 @@ startAutoScroll(): void {
   this.intervalId = setInterval(() => {
     this.scrollToSlide(this.currentIndex, new Event(''));
     this.currentIndex = (this.currentIndex + 1) % (this.destination?.imagePath.length || 0);
-  }, 2000);
+  }, 4000);
 }
 
   scrollToSlide(index: number, event: Event): void {
