@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AccountServiceService } from '../../../Services/account/account-service.service';
 
 @Component({
   selector: 'app-admin-header',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './admin-header.component.html',
   styleUrl: './admin-header.component.css'
 })
@@ -42,5 +42,9 @@ isDarkMode: boolean = false;
   logout() {
     this._accountService.logout();
   }
-  
+
+  closeDropdown(detailsElement: HTMLDetailsElement) {
+    detailsElement.open = false;
+  }
+
 }

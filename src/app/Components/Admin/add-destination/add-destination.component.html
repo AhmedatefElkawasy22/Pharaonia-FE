@@ -1,0 +1,88 @@
+<div class="register-page min-h-screen flex items-center justify-center" [ngClass]="{'dark:bg-gray-900': isDarkMode}">
+    <div class="grid grid-cols-1 md:grid-cols-1 gap-8 w-full max-w-5xl bg-white dark:bg-gray-800 shadow-lg rounded-xl overflow-hidden">
+      <div class="p-8">
+        <h2 class="text-2xl font-semibold text-center mb-6 text-gray-800 dark:text-gray-200">
+          Add Destination
+        </h2>
+        <form [formGroup]="AddDestination" (ngSubmit)="onSubmit()" class="space-y-4">
+  
+          <!-- Name Input -->
+          <div>
+            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
+            <input type="text" id="name" formControlName="name"
+              class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+              placeholder="Enter the destination name" />
+            <div *ngIf="AddDestination.get('name')?.touched">
+              <p *ngIf="AddDestination.get('name')?.errors?.['required']" class="text-red-500 text-sm mt-1">
+                Name is required.</p>
+              <p *ngIf="AddDestination.get('name')?.errors?.['pattern']" class="text-red-500 text-sm mt-1">
+                Name must be 3-50 characters long and contain only letters/numbers.</p>
+            </div>
+          </div>
+  
+          <!-- Description Input -->
+          <div>
+            <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
+            <input type="text" id="description" formControlName="description"
+              class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+              placeholder="Enter a description" />
+            <div *ngIf="AddDestination.get('description')?.touched">
+              <p *ngIf="AddDestination.get('description')?.errors?.['required']" class="text-red-500 text-sm mt-1">
+                Description is required.</p>
+              <p *ngIf="AddDestination.get('description')?.errors?.['pattern']" class="text-red-500 text-sm mt-1">
+                Description must be 5-300 characters long.</p>
+            </div>
+          </div>
+  
+          <!-- Destination Category Dropdown -->
+          <div>
+            <label for="destinationCategory" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              Destination Category
+            </label>
+            <select id="destinationCategory" formControlName="destinationCategory"
+              class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500">
+              <option [value]="0">In Egypt</option>
+              <option [value]="1">Outside Egypt</option>
+            </select>
+            <div *ngIf="AddDestination.get('destinationCategory')?.touched">
+              <p *ngIf="AddDestination.get('destinationCategory')?.errors?.['required']" class="text-red-500 text-sm mt-1">
+                Please select a category.</p>
+            </div>
+          </div>
+  
+          <!-- Images Input (FormArray) -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Images</label>
+            
+            <div *ngFor="let imageCtrl of Images().controls; let i = index" class="flex items-center space-x-2">
+              <input type="file" [formControlName]="i"
+                class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+                placeholder="Enter image  (PNG, JPG, JPEG only)" />
+              <button (click)="removeimage(i)" type="button" [disabled]="Images().length === 1"
+                class="px-3 py-1 bg-red-500 text-white rounded-lg text-sm">
+                Remove
+              </button>
+            </div>
+  
+            <div *ngIf="Images().length === 0" class="text-gray-500 text-sm mt-1">
+              No images added. Click "Add Image" to add one.
+            </div>
+  
+            <button (click)="addimage()" type="button"
+              class="mt-2 px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700">
+              Add Image
+            </button>
+          </div>
+  
+          <!-- Submit Button -->
+          <button type="submit"
+            class="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 disabled:opacity-50"
+            [disabled]="AddDestination.invalid">
+            Update
+          </button>
+  
+        </form>
+      </div>
+    </div>
+  </div>
+  

@@ -2,13 +2,29 @@
   transition: transform 0.5s ease-in-out;
 }
 
-.NC {
-  text-align: center;
-}
 
 .btn-circle {
        color: black;
        border: 3px solid;
        border: none;
        font-size: 22px;
+}
+
+.btns{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.btn-primary{
+  color: cadetblue
+}
+@media (max-width: 768px) {
+  .btns{
+    flex-direction: column;
+    align-items: center;
+  }
 }

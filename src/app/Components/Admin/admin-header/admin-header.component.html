@@ -18,7 +18,22 @@
         <ul
           tabindex="0"
           class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-          <li><a>Item 1</a></li>
+          <li>
+            <details #destinationDropdown>
+              <summary>Destinations</summary>
+              <ul class="p-2 z-[10]">
+                <li routerLink="/admin/destination" (click)="closeDropdown(destinationDropdown)">
+                  <a>All Destinations</a>
+                </li>
+                <li routerLink="/admin/destination-egypt" (click)="closeDropdown(destinationDropdown)">
+                  <a>Destinations In Egypt</a>
+                </li>
+                <li routerLink="/admin/destination-outside-egypt" (click)="closeDropdown(destinationDropdown)">
+                  <a>Destinations Outside Egypt</a>
+                </li>
+              </ul>
+            </details>
+          </li>
           <li><a>Item 2</a></li>
           <li><a>Item 3</a></li>
           <li><a>Item 4</a></li>
@@ -30,12 +45,18 @@
       <ul class="menu menu-horizontal px-1">
         <li><a>Item 1</a></li>
         <li>
-          <details>
+          <details #destinationDropdown>
             <summary>Destinations</summary>
-            <ul class="p-2">
-              <li ><a>All Destinations</a></li>
-              <li  ><a>Destinations In Egypt</a></li>
-              <li  ><a>Destinations out side Egypt</a></li>
+            <ul class="p-2 z-[10]">
+              <li routerLink="/admin/destination" (click)="closeDropdown(destinationDropdown)">
+                <a>All Destinations</a>
+              </li>
+              <li routerLink="/admin/destination-egypt" (click)="closeDropdown(destinationDropdown)">
+                <a>Destinations In Egypt</a>
+              </li>
+              <li routerLink="/admin/destination-outside-egypt" (click)="closeDropdown(destinationDropdown)">
+                <a>Destinations Outside Egypt</a>
+              </li>
             </ul>
           </details>
         </li>
