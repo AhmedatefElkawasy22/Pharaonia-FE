@@ -1,32 +1,37 @@
 import { Destination } from './../../Models/destination';
 import { Component, OnInit } from '@angular/core';
-import { DestinationServiceService } from '../../Services/destination.service';
 import { NgFor } from '@angular/common';
+import { AboutUsService } from '../../Services/aboutUs/about-us.service';
+import { DestinationServiceService } from '../../Services/destination/destination-service.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NgFor],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
+  imports: [NgFor],
 })
 export class HomeComponent implements OnInit {
   destinations: Destination[] = [];
+  aboutUs: any;
 
-  constructor(private _DestinationService: DestinationServiceService) {}
+  constructor(private _DestinationService: DestinationServiceService , private _aboutUsService: AboutUsService) {}
   ngOnInit(): void {
-    this._DestinationService.GetDestinations().subscribe((data) => {
-      this.destinations = data;
+    this._DestinationService.GetDestinations().subscribe({
+      next: (data) => {
+        this.destinations = data;
+      },
+      error: (err) => {
+        //console.error('Error fetching destinations:', err);
+      },
     });
-    // getAllDestinations() {
-    //   this.http.get<Destination[]>('${environment.BaseURL}/Get-All-Destinations').subscribe(
-    //     (data) => {
-    //       this.destinations = data;
-    //     },
-    //     () => {
-    //       //console.error('Error fetching destinations:', error);
-    //     }
-    //     );
-    //   }
+    this._aboutUsService.GetAboutUs().subscribe({
+      next: (data) => {
+        this.aboutUs = data;
+      },
+      error: (err) => {
+        console.error('Error fetching about us:', err);
+      },
+    });
   }
 }
