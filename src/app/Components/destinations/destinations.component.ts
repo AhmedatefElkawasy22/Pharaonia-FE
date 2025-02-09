@@ -1,8 +1,8 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { DestinationServiceService } from '../../Services/destination.service';
 import { Destination } from '../../Models/destination';
 import { NgFor, NgIf, NgIfContext } from '@angular/common';
 import { Router } from '@angular/router';
+import { DestinationServiceService } from '../../Services/destination/destination-service.service';
 
 @Component({
   selector: 'app-destinations',
@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
   styleUrl: './destinations.component.css',
 })
 export class DestinationsComponent implements OnInit {
+
+
   Destinations: Destination[] = [];
   noData!: TemplateRef<NgIfContext<boolean>> | null;
   constructor(
@@ -53,6 +55,9 @@ export class DestinationsComponent implements OnInit {
   }
 
   go(DestinationID: number) {
-    this._router.navigateByUrl(`/destination/${DestinationID}`);
+    if (this._router.url.startsWith("/admin"))
+      this._router.navigateByUrl(`/admin/destination/${DestinationID}`);
+    else
+      this._router.navigateByUrl(`/destination/${DestinationID}`);
   }
 }

@@ -1,3 +1,4 @@
+import { Destination } from './../../Models/destination';
 import { Component, OnInit } from '@angular/core';
 import { DestinationServiceService } from '../../Services/destination.service';
 import { NgFor } from '@angular/common';
@@ -10,29 +11,22 @@ import { NgFor } from '@angular/common';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  destinations: any[] = [];
-  isLoading: boolean = true;
-  errorMessage: string = '';
+  destinations: Destination[] = [];
 
- constructor(
-    //private _DestinationService: DestinationServiceService,
-
-  ) {}
+  constructor(private _DestinationService: DestinationServiceService) {}
   ngOnInit(): void {
-   // this.fetchDestinations();
+    this._DestinationService.GetDestinations().subscribe((data) => {
+      this.destinations = data;
+    });
+    // getAllDestinations() {
+    //   this.http.get<Destination[]>('${environment.BaseURL}/Get-All-Destinations').subscribe(
+    //     (data) => {
+    //       this.destinations = data;
+    //     },
+    //     () => {
+    //       //console.error('Error fetching destinations:', error);
+    //     }
+    //     );
+    //   }
   }
-
-//   fetchDestinations(): void {
-//     this.destinationService.getDestinations().subscribe({
-//       next: (data) => {
-//         this.destinations = data;
-
-//       },
-//       error: (err) => {
-//         this.errorMessage = 'Failed to load destinations. Please try again.';
-
-//       },
-//     });
-//   }
-//
 }

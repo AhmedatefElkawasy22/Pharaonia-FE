@@ -62,6 +62,7 @@ export class AccountServiceService {
     if (typeof window !== 'undefined' && window.localStorage) {
       return localStorage.getItem('token');
     } else {
+      this.isLoggedin.update(() => false);
       return null;
     }
   }
