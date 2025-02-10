@@ -47,4 +47,9 @@ isDarkMode: boolean = false;
     detailsElement.open = false;
   }
 
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  
+
 }

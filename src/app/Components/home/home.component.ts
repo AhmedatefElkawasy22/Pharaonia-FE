@@ -4,6 +4,8 @@ import { NgFor, NgIf } from '@angular/common';
 import { AboutUsService } from '../../Services/aboutUs/about-us.service';
 import { DestinationServiceService } from '../../Services/destination/destination-service.service';
 import { Router, RouterLink } from '@angular/router';
+import { Offer } from '../../Models/offer';
+import { OfferService } from '../../Services/offer/offerService.service';
 
 @Component({
   selector: 'app-home',
@@ -13,27 +15,35 @@ import { Router, RouterLink } from '@angular/router';
   imports: [NgFor,NgIf,RouterLink],
 })
 export class HomeComponent implements OnInit {
+
   destinations: Destination[] = [];
+  offers: Offer[] = [];
   aboutUs: string = '';
 
-  constructor(private _DestinationService: DestinationServiceService , private _aboutUsService: AboutUsService) {}
+  constructor(private _DestinationService: DestinationServiceService , private _aboutUsService: AboutUsService,private _offerService: OfferService) {}
   ngOnInit(): void {
     this._DestinationService.GetDestinations().subscribe({
       next: (data) => {
-        //console.log(data);
         this.destinations = data;
       },
       error: (err) => {
         //console.error('Error fetching destinations:', err);
       },
     });
+    this._offerService.GetAvailableOffers().subscribe({
+      next: (data) => {
+        this.offers = data;
+      },
+      error: (err) => {
+        //console.error('Error fetching offers:', err);
+      },
+    });
     this._aboutUsService.GetAboutUs().subscribe({
       next: (data) => {
-        console.log(data);
         this.aboutUs = data;
       },
       error: (err) => {
-        console.error('Error fetching about us:', err);
+        // console.error('Error fetching about us:', err);
       },
     });
   }
