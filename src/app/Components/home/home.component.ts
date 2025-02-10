@@ -3,17 +3,18 @@ import { Component, OnInit } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 import { AboutUsService } from '../../Services/aboutUs/about-us.service';
 import { DestinationServiceService } from '../../Services/destination/destination-service.service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [NgFor,NgIf],
+  imports: [NgFor,NgIf,RouterLink],
 })
 export class HomeComponent implements OnInit {
   destinations: Destination[] = [];
-  aboutUs: any;
+  aboutUs: string = '';
 
   constructor(private _DestinationService: DestinationServiceService , private _aboutUsService: AboutUsService) {}
   ngOnInit(): void {
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
     });
     this._aboutUsService.GetAboutUs().subscribe({
       next: (data) => {
+        console.log(data);
         this.aboutUs = data;
       },
       error: (err) => {
