@@ -1,6 +1,6 @@
 import { Destination } from './../../Models/destination';
 import { Component, OnInit } from '@angular/core';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { AboutUsService } from '../../Services/aboutUs/about-us.service';
 import { DestinationServiceService } from '../../Services/destination/destination-service.service';
 
@@ -9,7 +9,7 @@ import { DestinationServiceService } from '../../Services/destination/destinatio
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [NgFor],
+  imports: [NgFor,NgIf],
 })
 export class HomeComponent implements OnInit {
   destinations: Destination[] = [];
@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this._DestinationService.GetDestinations().subscribe({
       next: (data) => {
+        //console.log(data);
         this.destinations = data;
       },
       error: (err) => {

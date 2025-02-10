@@ -1,39 +1,76 @@
 <!--Start About Us -->
 
-<section class="about-us">
-  <div class="about-container">
-    <img
-      src="Hurghada-Egypt-1.jpg"
-      class="about-image left"
-    />
-    <div class="about-text">
-      <h2 class="title">About Us</h2>
-      <p>
-       {{aboutUs}}
-      </p>
-      <button class="btn btn-outline btn-primary">See More</button>
-    </div>
-    <img
-      src="Abu-SImbel-Temple-Aswan-Tourist-Attractions-Egypt-Tours-Portal.jpg"
-      class="about-image right"
-    />
+<section
+  class="relative h-screen bg-cover bg-center"
+  style="background-image: url('elgouna.jpg')"
+>
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+
+  <!-- Content -->
+  <div
+    class="relative z-10 flex flex-col justify-center items-center h-full text-center text-white px-4"
+  >
+    <h1 class="text-5xl md:text-7xl font-bold mb-4" style="color: aqua; font-style:oblique">
+      Explore!
+    </h1>
+    <p class="text-lg md:text-xl max-w-2xl" style="font-style: italic">
+      Discover the magic of the world's most stunning destinations. From
+      breathtaking beaches to historical landmarks, immerse yourself in
+      cultures, adventures, and unforgettable moments. Pack your bags and let
+      the journey begin!
+    </p>
+
+    <!-- <button class="btn btn-outline btn-primary"><span style="color:rgb(183, 182, 182)">Discover</span></button> -->
   </div>
 </section>
 
 <!--End About Us -->
-
+<hr class="line my-12" />
 <!--Start Destinations -->
-<div class="container mx-auto py-16">
-  <h2 class="title">Our Destinations</h2>
-  <div class="carousel carousel-center bg-slate-50 rounded-box max-w-md space-x-4 p-4">
-    <div class="carousel-item" *ngFor="let destination of destinations">
-      <img
-        [src]="destination.imagePath"
-        alt="destination"
-        class="rounded-lg w-full h-64 object-cover">
 
-      <h3 class="text-lg font-semibold">{{ destination.name }}</h3>
+<section class="destinations">
+  <div class="container mx-auto p-6 mt-12 mb-10">
+    <h2 class="title">Destination Recommendations</h2>
+
+    <div
+      *ngIf="destinations.length > 0"
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+    >
+      <div
+        *ngFor="let destination of destinations"
+        class="card transition duration-300 transform hover:scale-105 hover:shadow-2xl"
+      >
+        <figure>
+          <img
+            [src]="
+              destination.imagePath.length > 0
+                ? destination.imagePath[0]
+                : 'assets/default-image.jpg'
+            "
+            alt="{{ destination.name || 'No Name' }}"
+            class="w-full h-48 object-cover rounded-t-lg"
+          />
+        </figure>
+        <div class="p-4 text-center">
+          <h2 class="text-xl font-bold dark:text-white" style="color: gray">
+            {{ destination.name || "Name not available" }}
+          </h2>
+        </div>
+      </div>
+<!--
+      <button class="btn btn-outline btn-primary">
+        <span style="color: rgb(183, 182, 182)">Discover All Destinations</span>
+      </button> -->
+      <!-- <button class="btn" (click)="go(destination.id)">View Details</button> -->
+
+      <ng-template #noData>
+        <div class="flex justify-center items-center h-screen">
+          <span class="loading loading-dots loading-2xl p-12 text-5xl"></span>
+        </div>
+      </ng-template>
     </div>
+
+    <!--End Destinations -->
   </div>
-</div>
-<!--End Destinations -->
+</section>

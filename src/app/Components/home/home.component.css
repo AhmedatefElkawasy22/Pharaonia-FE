@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   height: 85vh;
-  background-color: #f9f9f9;
+   /* background-color: #f9f9f9; */
 }
 
 .about-container {
@@ -75,4 +75,10 @@
   margin-bottom: 32px;
 
 }
-
+.line{
+  width: 100px;
+  height: 3px;
+  
+  margin: 0 auto 32px;
+  color: #9040cd;
+}
