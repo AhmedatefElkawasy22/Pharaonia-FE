@@ -8,7 +8,7 @@ import { Offer } from '../../Models/offer';
 @Component({
   selector: 'app-one-offer',
   standalone: true,
- imports : [], // imports: [NgFor, NgIf],
+  imports: [], // imports: [NgFor, NgIf],
   templateUrl: './one-offer.component.html',
   styleUrls: ['./one-offer.component.css'],
 })
@@ -21,7 +21,7 @@ export class OneOfferComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private OfferService: OfferService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('offerID');
@@ -33,11 +33,12 @@ export class OneOfferComponent implements OnInit {
           console.log(data);
           this.offer = data;
         },
-        error: () => {},
+        error: () => { },
       });
     }
 
-        }}
+  }
+}
 
 
 

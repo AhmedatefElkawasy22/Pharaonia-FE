@@ -32,7 +32,7 @@
             {{ offer.offerDuration }}
           </h2>
         </div>
-        <button class="btn" (click)="OfferDetail(offer.id)">View Offer</button>
+        <button class="btn" routerLink="/offer/{{offer.id}}">View Offer</button>
       </div>
     </div>
   </div>
