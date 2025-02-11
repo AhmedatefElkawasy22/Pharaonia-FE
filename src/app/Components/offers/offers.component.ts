@@ -15,11 +15,13 @@ export class OffersComponent implements OnInit {
   Offers: Offer[] = [];
   noData!: TemplateRef<NgIfContext<boolean>> | null;
 
-  constructor(private offerService: OfferService, private router: Router) {}
+  constructor(private offerService: OfferService, private router: Router) { }
+
 
   OfferDetail(id: number): void {
-    this.router.navigate(['/offer-detail', id]);
+    this.router.navigate(['/offer', id]);
   }
+
 
   ngOnInit(): void {
     this.offerService.GetAvailableOffers().subscribe({
