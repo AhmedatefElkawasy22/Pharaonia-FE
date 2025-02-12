@@ -43,9 +43,14 @@ isDarkMode: boolean = false;
     this._accountService.logout();
   }
 
+
   closeDropdown(detailsElement: HTMLDetailsElement) {
-    detailsElement.open = false;
+    setTimeout(() => {
+      detailsElement.open = false;
+    }, 100);
   }
+  
+  
 
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
