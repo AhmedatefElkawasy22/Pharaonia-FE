@@ -2,13 +2,13 @@ import { OfferService } from '../../Services/offer/offerService.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { CommonModule, NgFor, NgIf, NgIfContext } from '@angular/common';
 import { Offer } from '../../Models/offer';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',
   styleUrls: ['./offers.component.css'],
-  imports: [NgFor, NgIf, CommonModule],
+  imports: [NgFor, NgIf, CommonModule, RouterLink],
   standalone: true,
 })
 export class OffersComponent implements OnInit {
@@ -21,6 +21,7 @@ export class OffersComponent implements OnInit {
   OfferDetail(id: number): void {
     this.router.navigate(['/offer', id]);
   }
+
 
 
   ngOnInit(): void {

@@ -1,1 +1,41 @@
-<p>about-us works!</p>
+<div class="min-h-screen flex flex-col items-center justify-center px-6 mt-16 "
+     [ngClass]="{'bg-gray-900 text-gray-100': IsDarkMode }">
+
+    <div class="max-w-4xl w-full rounded-3xl text-blue-400 shadow-2xl p-12 space-y-10 transition-all duration-300 bg-gray-800 text-gray-100">
+        <h1 class="text-5xl font-bold text-center">
+            About Us
+        </h1>
+
+        <p class="text-lg text-center leading-relaxed text-gray-300">
+            {{ aboutUs }}
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Mission Section -->
+            <div class="flex flex-col bg-gray-700 text-gray-200 items-center p-8 rounded-xl shadow-lg transition duration-300 transform hover:scale-105 bg-gray-700 text-gray-200">
+                <h2 class="text-2xl font-semibold mt-4">Our Mission</h2>
+                <p class="text-center text-lg mt-2">
+                    To revolutionize tourism by offering seamless and enriching travel experiences,
+                    ensuring every journey is immersive and memorable.
+                </p>
+            </div>
+
+            <!-- Vision Section -->
+            <div class="flex flex-col bg-gray-700 text-gray-200 items-center p-8 rounded-xl shadow-lg transition duration-300 transform hover:scale-105 bg-gray-700 text-gray-200">
+                <h2 class="text-2xl font-semibold mt-4">Our Vision</h2>
+                <p class="text-center text-lg mt-2">
+                    To position Egypt as a top global travel destination by integrating
+                    cutting-edge digital services and enhancing cultural experiences.
+                </p>
+            </div>
+        </div>
+
+        <div class="flex justify-center mt-10">
+            <button routerLink="/contactUs"
+                class=" btn px-8 py-3 rounded-lg text-lg font-semibold bg-blue-400 hover:bg-blue-500 text-gray-900 shadow-lg transition duration-300 transform hover:scale-105">
+                Contact Us
+            </button>
+        </div>
+
+    </div>
+</div>

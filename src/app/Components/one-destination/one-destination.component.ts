@@ -106,7 +106,7 @@ export class OneDestinationComponent implements OnInit {
               'the destination has been deleted successfully'
             );
             setTimeout(() => {
-              this._router.navigateByUrl('/admin/home');
+              this._router.navigateByUrl('/admin/destination');
             }, 3000);
           },
           error: (err) => {

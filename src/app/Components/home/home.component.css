@@ -1,10 +1,9 @@
-
 .about-us {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 85vh;
-   /* background-color: #f9f9f9; */
+  /* background-color: #f9f9f9; */
 }
 
 .about-container {
@@ -24,8 +23,8 @@
   width: 45%;
   padding: 20px;
   text-align: center;
-  color:black;
-  font: weight 450px ;
+  color: black;
+  font: weight 450px;
 }
 
 .about-text h2 {
@@ -37,10 +36,10 @@
   font-size: 1.1em;
   color: #4a505d;
   font-weight: 800;
-  font-style:oblique;
+  font-style: oblique;
   line-height: 1.5em;
 }
- .btn {
+.btn {
   display: inline-block;
   padding: 10px 20px;
 
@@ -49,36 +48,35 @@
   font-weight: 800;
   font-size: 1.1em;
   margin-top: 20px;
- }
+}
 @media (max-width: 768px) {
   .about-container {
-      flex-direction: column;
-      text-align: center;
+    flex-direction: column;
+    text-align: center;
   }
 
   .about-image {
-      width: 80%;
-      margin-bottom: 20px;
+    width: 80%;
+    margin-bottom: 20px;
   }
 
   .about-text {
-      width: 80%;
+    width: 80%;
   }
 }
 
-.title{
-   font-style: italic;
-  font-size: 30px ;
-  line-height : 36px ;
+.title {
+  font-style: italic;
+  font-size: 30px;
+  line-height: 36px;
   font-weight: 900;
   text-align: center;
   margin-bottom: 32px;
-
 }
-.line{
+.line {
   width: 100px;
   height: 3px;
-  
+
   margin: 0 auto 32px;
   color: #9040cd;
 }
@@ -90,7 +88,7 @@
   background: #0f172a;
   transition: all 0.4s;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px 5px  rgba(0, 0, 0, 0.705);
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
   font-size: 30px;
   font-weight: 900;
 }
@@ -99,8 +97,8 @@
   border-radius: 15px;
   cursor: pointer;
   transform: scale(1.2);
-  box-shadow: 0px 0px 10px 5px  rgba(0, 0, 0, 0.705);
-  background:#0f172a;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
+  background: #0f172a;
 }
 
 .first-content {
@@ -155,7 +153,7 @@
 .icon-Container {
   width: 45px;
   height: 45px;
-  background-color:#bebebe;
+  background-color: #bebebe;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -189,66 +187,66 @@
     margin-left: 10px;
   }
 }
-  /* see more icon  */
+/* see more icon  */
 
-  .btnMore {
-    width: 140px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border: none;
-    position: relative;
-    background-color: transparent;
-    transition: .2s cubic-bezier(0.19, 1, 0.22, 1);
-    opacity: 0.6;
-  }
-  
-  .btnMore::after {
-    content: '';
-    border-bottom: 3px double rgb(30, 181, 201);
-    width: 0;
-    height: 100%;
-    position: absolute;
-    margin-top: -5px;
-    top: 0;
-    left: 5px;
-    visibility: hidden;
-    opacity: 1;
-    transition: .2s linear;
-  }
-  
-  .btnMore .icon {
+.btnMore {
+  width: 140px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  position: relative;
+  background-color: transparent;
+  transition: 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+  opacity: 0.6;
+}
+
+.btnMore::after {
+  content: "";
+  border-bottom: 3px double rgb(30, 181, 201);
+  width: 0;
+  height: 100%;
+  position: absolute;
+  margin-top: -5px;
+  top: 0;
+  left: 5px;
+  visibility: hidden;
+  opacity: 1;
+  transition: 0.2s linear;
+}
+
+.btnMore .icon {
+  transform: translateX(0%);
+  transition: 0.2s linear;
+  animation: attention 1.2s linear infinite;
+}
+
+.btnMore:hover::after {
+  visibility: visible;
+  opacity: 0.7;
+  width: 90%;
+}
+
+.btnMore:hover {
+  letter-spacing: 2px;
+  opacity: 1;
+}
+
+.btnMore:hover > .icon {
+  transform: translateX(60%);
+  animation: none;
+}
+
+@keyframes attention {
+  0% {
     transform: translateX(0%);
-    transition: .2s linear;
-    animation: attention 1.2s linear infinite;
   }
-  
-  .btnMore:hover::after {
-    visibility: visible;
-    opacity: 0.7;
-    width: 90%;
+
+  50% {
+    transform: translateX(30%);
   }
-  
-  .btnMore:hover {
-    letter-spacing: 2px;
-    opacity: 1;
-  }
-  
-  .btnMore:hover > .icon {
-    transform: translateX(60%);
-    animation: none;
-  }
-  
-  @keyframes attention {
-    0% {
-      transform: translateX(0%);
-    }
-  
-    50% {
-      transform: translateX(30%);
-    }
-  }
-  
+}
+
