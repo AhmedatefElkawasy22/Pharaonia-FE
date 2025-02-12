@@ -7,7 +7,6 @@ import { DestinationServiceService } from '../../Services/destination/destinatio
 import { Router, RouterLink } from '@angular/router';
 import { Offer } from '../../Models/offer';
 import { OfferService } from '../../Services/offer/offerService.service';
-// import { GalleryComponent } from '../gallery/gallery.component';
 @Component({
   selector: 'app-home',
   standalone: true,
