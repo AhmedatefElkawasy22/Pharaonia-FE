@@ -2,12 +2,12 @@ import { OfferService } from './../../Services/offer/offerService.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Offer } from '../../Models/offer';
-import { NgFor, NgIf } from '@angular/common';
+import {  NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-one-offer',
   standalone: true,
-  imports: [NgFor, NgIf],
+  imports: [ NgIf],
   templateUrl: './one-offer.component.html',
   styleUrls: ['./one-offer.component.css'],
 })
@@ -23,7 +23,6 @@ export class OneOfferComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('offerId');
     const id = this.route.snapshot.paramMap.get('offerId');
     this.offerID = id ? Number(id) : 0;
 
