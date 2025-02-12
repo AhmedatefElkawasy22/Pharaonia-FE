@@ -12,7 +12,7 @@ import { NgFor, NgIf } from '@angular/common';
   styleUrls: ['./one-offer.component.css'],
 })
 export class OneOfferComponent implements OnInit {
-  offer: Offer | null = null;
+  offer!: Offer ;
   offerID: number = 0;
   currentIndex: number = 0;
   intervalId: any;
@@ -24,6 +24,7 @@ export class OneOfferComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('offerId');
+    const id = this.route.snapshot.paramMap.get('offerId');
     this.offerID = id ? Number(id) : 0;
 
     if (this.offerID > 0) {
@@ -34,12 +35,9 @@ export class OneOfferComponent implements OnInit {
         },
         error: () => { },
       });
+     
+
     }
 
   }
 }
-
-
-
-
-

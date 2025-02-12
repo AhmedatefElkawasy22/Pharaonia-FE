@@ -1,3 +1,4 @@
+import { GalleryComponent } from './../gallery/gallery.component';
 import { Destination } from './../../Models/destination';
 import { Component, OnInit } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
@@ -5,16 +6,15 @@ import { DestinationServiceService } from '../../Services/destination/destinatio
 import {  RouterLink } from '@angular/router';
 import { Offer } from '../../Models/offer';
 import { OfferService } from '../../Services/offer/offerService.service';
-
+// import { GalleryComponent } from '../gallery/gallery.component';
 @Component({
   selector: 'app-home',
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [NgFor, NgIf, RouterLink],
+  imports: [NgFor, NgIf, RouterLink,GalleryComponent],
 })
 export class HomeComponent implements OnInit {
-
   destinations: Destination[] = [];
   offers: Offer[] = [];
   Explore: string = '';

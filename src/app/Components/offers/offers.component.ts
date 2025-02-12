@@ -15,7 +15,12 @@ export class OffersComponent implements OnInit {
   Offers: Offer[] = [];
   noData!: TemplateRef<NgIfContext<boolean>> | null;
 
-  constructor(private offerService: OfferService, private router: Router) {}
+  constructor(private offerService: OfferService, private router: Router) { }
+
+
+  OfferDetail(id: number): void {
+    this.router.navigate(['/offer', id]);
+  }
 
 
 
