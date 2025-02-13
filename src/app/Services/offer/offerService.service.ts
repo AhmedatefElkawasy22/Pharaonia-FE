@@ -14,6 +14,11 @@ export class OfferService {
   GetAllOffers(): Observable<Offer[]> {
     return this._http.get<Offer[]>(`${environment.BaseURL}/Get-All-Offers`);
   }
+  GetOffersAvailableBasedOnNumber(number: number) : Observable<Offer[]> {
+     return this._http.get<Offer[]>(
+      `${environment.BaseURL}/Get-Offers-Available-Based-On-Number/${number}`
+     )
+  }
 
   GetOfferByID(offerId: number): Observable<Offer> {
     return this._http.get<Offer>(

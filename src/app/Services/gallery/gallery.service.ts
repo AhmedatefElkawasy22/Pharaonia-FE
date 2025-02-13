@@ -14,7 +14,6 @@ export class GalleryService {
   ) { }
 GetGallery():Observable<Gallery[]>
 {
-
   return this.http.get<Gallery[]>(`${environment.BaseURL}/api/Gallery/Get-All`);
 }
 

@@ -1,3 +1,11 @@
+.title {
+  font-style: italic;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 32px;
+}
 .carousel {
   width: 100%;
   overflow-x: auto;

@@ -2,17 +2,17 @@ import { OfferService } from './../../Services/offer/offerService.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Offer } from '../../Models/offer';
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-one-offer',
   standalone: true,
- imports: [ NgIf],
+  imports: [NgIf, NgFor],
   templateUrl: './one-offer.component.html',
   styleUrls: ['./one-offer.component.css'],
 })
 export class OneOfferComponent implements OnInit {
-  offer!: Offer ;
+  offer!: Offer;
   offerID: number = 0;
   currentIndex: number = 0;
   intervalId: any;
@@ -20,8 +20,10 @@ export class OneOfferComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private OfferService: OfferService
-  ) { }
-
+  ) {}
+  getFormattedDate(dateString: string): string {
+    return new Date(dateString).toLocaleDateString('en-GB');
+  }
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('offerId');
     this.offerID = id ? Number(id) : 0;
@@ -32,11 +34,46 @@ export class OneOfferComponent implements OnInit {
           console.log(data);
           this.offer = data;
         },
-        error: () => { },
+        error: () => {},
       });
-     
+      this.startAutoScroll();
+    }
+  }
 
+  ngOnDestroy() {
+    clearInterval(this.intervalId);
+  }
+
+  startAutoScroll(): void {
+    if (this.intervalId) {
+      return;
     }
 
+    this.intervalId = setInterval(() => {
+      this.currentIndex =
+        (this.currentIndex + 1) % (this.offer?.images?.length || 0);
+      this.scrollToSlide(this.currentIndex);
+    }, 4000);
+  }
+
+  stopAutoScroll(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
+  }
+
+  scrollToSlide(index: number, event?: Event): void {
+    if (event) {
+      event.preventDefault();
+      this.stopAutoScroll();
+    }
+
+    const element = document.getElementById('slide' + (index + 1));
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    this.currentIndex = index;
   }
 }

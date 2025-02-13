@@ -42,7 +42,10 @@ export const routes: Routes = [
       { path: 'update-destination', component:UpdateDestinationComponent,title:"Update Destination"},
       { path: 'update-iamges-of-destination/:DestinationID', component:UpdateIamgesOfDestinationComponent , title : "Update Images of Destination"},
       { path: 'add-images-to-destination/:DestinationID' ,component:AddIamgesOfDestinationComponent,title:"Add Images of Destination"},
-      { path: 'add-destination',component:AddDestinationComponent ,title:"Add New Destination"}
+      { path: 'add-destination',component:AddDestinationComponent ,title:"Add New Destination"},
+      { path: 'offers', component: OffersComponent, title: 'All available offers', },
+      { path: 'expired-offers', component: OffersComponent, title: 'All expired offers', },
+      { path: 'offer/:offerId', component: OneOfferComponent, title: 'Offer', }
     ]
   },
 

@@ -5,5 +5,5 @@ export interface Offer {
   price: number;
   images: string[];
   offerDuration: string;
-  expireOn: Date;
+  expireOn: string;
 }

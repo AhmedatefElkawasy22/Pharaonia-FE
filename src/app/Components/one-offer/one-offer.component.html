@@ -1,73 +1,84 @@
- <div
+<div
   *ngIf="offer"
   class="container mx-auto p-8 mt-12 mb-10 bg-gradient-to-b from-gray-800 to-gray-900 shadow-lg rounded-2xl text-white"
 >
-  <div class="NC">
+  <div class="NC text-center">
     <h1
-      class="text-5xl font-extrabold text-primary mb-6 text-center uppercase tracking-wide drop-shadow-lg bg-gray-800"
+      class="text-5xl font-extrabold text-primary mb-6 uppercase tracking-wide drop-shadow-lg"
     >
-      {{offer.nameOfDestination}}
-      <div class="badge badge-dash badge-primary">{{offer.expireOn}}</div>
+      {{ offer.nameOfDestination }}
     </h1>
+
+    <div class="offer-info-container">
+      <div class="offer-duration">⏳ Duration: {{ offer.offerDuration }}</div>
+
+      <div class="offer-expire">
+        <i class="fa-solid fa-calendar" style="color: #d3ca1e"></i>
+        Expire On: {{ getFormattedDate(offer.expireOn) }}
+      </div>
+    </div>
   </div>
 
-  <div class="con">
-    <p
-      class="text-lg leading-relaxed tracking-wide text-justify text-gray-300 px-6 mb-8"
+  <p
+    class="text-lg leading-relaxed tracking-wide text-justify text-gray-300 px-6 mb-8"
+  >
+    {{ offer.description }}
+  </p>
+
+  <!-- Start Scroll Image -->
+  <div class="carousel-item overflow-hidden rounded-xl shadow-lg">
+    <div
+      *ngFor="let img of offer.images; let i = index"
+      [id]="'slide' + (i + 1)"
+      class="carousel-item relative w-full"
     >
-      {{ offer.description }}
-    </p>
+      <img
+        [src]="img"
+        class="w-full rounded-lg shadow-lg border border-gray-700"
+        alt="offer Image"
+        style="max-height: 550px; max-width: auto"
+      />
 
-    <!-- Start Image Carousel -->
-<!-- 
-    <div class="carousel-item overflow-hidden rounded-xl shadow-lg">
       <div
-        *ngFor="let img of offer.images; let i = index"
-        [id]="'slide' + (i + 1)"
-        class="carousel-item relative w-full"
+        class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"
       >
-        <img
-          [src]="img"
-          class="w-full rounded-lg shadow-lg border border-gray-700"
-          alt="offer Image"
-          style="max-height: 550px; max-width: auto"
-        />
-
-        <div
-          class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"
+        <a
+          *ngIf="i > 0"
+          href="#"
+          class="btn btn-circle btn-outline border-blue-800"
+          (click)="scrollToSlide(i - 1, $event)"
         >
+          ❮❮
+        </a>
 
         <a
-            *ngIf="i > 0"
-            href="#"
-            class="btn btn-circle btn-outline border-blue-800"
-            (click)="scrollToSlide(i - 1, $event)"
-          >
-            ❮❮
-          </a>
-
-          <a
-            *ngIf="i < (offer?.images?.length || 0) - 1"
-            href="#"
-            class="btn btn-circle btn-outline border-blue-800"
-            (click)="scrollToSlide(i + 1, $event)"
-          >
-            ❯❯
-          </a>
-        </div>
+          *ngIf="i < (offer?.images?.length || 0) - 1"
+          href="#"
+          class="btn btn-circle btn-outline border-blue-800"
+          (click)="scrollToSlide(i + 1, $event)"
+        >
+          ❯❯
+        </a>
       </div>
-    </div> -->
-
-     <!-- End Scroll Image -->
-
-    <p class="text-2xl text-center font-bold text-gray-500 mt-4">
-      Price: ${{offer.price}}
-    </p>
-
-    <ng-template #noData>
-      <div class="flex justify-center items-center h-screen">
-        <span class="loading loading-dots loading-2xl p-12 text-5xl"></span>
-      </div>
-    </ng-template>
+    </div>
   </div>
+
+  <!-- End Scroll Image -->
+
+  <div class="text-center mt-6">
+    <div
+      class="p-4 bg-gray-700 text-white rounded-xl shadow-lg inline-block text-2xl font-semibold"
+    >
+      💰 Price: <span class="text-[#6366f1]">${{ offer.price }}</span>
+    </div>
+  </div>
+  <div class="flex justify-center mt-6">
+    <button class="btn">Book Now</button>
+  </div>
+
+  <ng-template #noData>
+    <div class="flex justify-center items-center h-screen">
+      <span class="loading loading-dots loading-2xl p-12 text-5xl"></span>
+    </div>
+  </ng-template>
 </div>

@@ -24,6 +24,11 @@ export class DestinationServiceService {
     return this._http.get<Destination>(`${environment.BaseURL}/Get-Destination-By-Id/${id}`);
   }
 
+  GetDestinationsBasedOnNumber(number:number):Observable<Destination[]>
+  {
+    return this._http.get<Destination[]>(`${environment.BaseURL}/Get-Destinations-Based-On-Number/${number}`);
+  }
+
   GetDestinationBasedOnCategory(Category:number):Observable<Destination[]>
   {
     return this._http.get<Destination[]>(`${environment.BaseURL}/Get-Destinations-Based-On-Category/${Category}`);
