@@ -1,8 +1,12 @@
 import { OfferService } from './../../Services/offer/offerService.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Offer } from '../../Models/offer';
-import { NgFor, NgIf } from '@angular/common';
+import { NgFor, NgIf ,Location} from '@angular/common';
+import { AccountServiceService } from '../../Services/account/account-service.service';
+import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-one-offer',
@@ -16,11 +20,19 @@ export class OneOfferComponent implements OnInit {
   offerID: number = 0;
   currentIndex: number = 0;
   intervalId: any;
-
+   IsAdmin !: boolean;
+   expired !: boolean;
   constructor(
     private route: ActivatedRoute,
-    private OfferService: OfferService
-  ) {}
+    private OfferService: OfferService,
+    private _router: Router,
+    private _accountService: AccountServiceService,
+    private _dialog: MatDialog,
+    private _location: Location
+  ) {
+    this.IsAdmin = this._accountService.isTokenValid() && this._router.url.startsWith('/admin');
+
+  }
 
   getFormattedDate(dateString: string): string {
     return new Date(dateString).toLocaleDateString('en-GB');
@@ -33,8 +45,9 @@ export class OneOfferComponent implements OnInit {
     if (this.offerID > 0) {
       this.OfferService.GetOfferByID(this.offerID).subscribe({
         next: (data) => {
-          console.log(data);
+          // console.log(data);
           this.offer = data;
+          
         },
         error: () => {},
       });
@@ -78,6 +91,83 @@ export class OneOfferComponent implements OnInit {
 
     this.currentIndex = index;
   }
+  
 
+  Delete() {
+    const dialogRef = this._dialog.open(ConfirmationDialogComponent, {
+      data: {
+        title: 'Confirm Deletion',
+        message:
+          'Are you sure you want to delete this Offer? This action cannot be undone.',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.OfferService.DeleteOffer(this.offerID).subscribe({
+          next: (response) => {
+            this.openAlertDialog(
+              'Success',
+              'the Offer has been deleted successfully'
+            );
+            setTimeout(() => {
+              this._location.back();
+            }, 3000);
+          },
+          error: (err) => {
+            // console.error('Error occurred during deletion:', err);
+            this.openAlertDialog('Error', 'Failed to delete your Offer, please try again later');
+          },
+        });
+      } else {
+        // console.log("Deletion canceled by the user.");
+      }
+    }
+  )}
+
+  Update(){
+    this._router.navigate(['/admin/update-offer'], {
+      state: { offer: this.offer },
+    });
+  }
+
+  Reactive()
+  {
+    const dialogRef = this._dialog.open(ConfirmationDialogComponent, {
+      data: {
+        title: 'Confirm Reactive',
+        message:
+          'Are you sure you want to Reactive this Offer? This action cannot be undone.',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.OfferService.ReactiveOffer(this.offerID).subscribe({
+          next: (response) => {
+            this.openAlertDialog(
+              'Success',
+              'the Offer has been Reactive successfully'
+            );
+            setTimeout(() => {
+              this._router.navigate(['/admin/offers']);
+            }, 3000);
+          },
+          error: (err) => {
+            // console.error('Error occurred during deletion:', err);
+            this.openAlertDialog('Error', 'Failed to Reactive your Offer, please try again later');
+          },
+        });
+      } else {
+        // console.log("Deletion canceled by the user.");
+      }
+    })
+  }
+
+  openAlertDialog(title: string, message: string) {
+    this._dialog.open(AlertDialogComponent, {
+      data: { title: title, message: message },
+    });
+  }
 
 }

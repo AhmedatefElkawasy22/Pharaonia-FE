@@ -6,4 +6,6 @@ export interface Offer {
   images: string[];
   offerDuration: string;
   expireOn: string;
+  expired: boolean;
+  durationOfExpiration:string;
 }

@@ -26,9 +26,15 @@
   color: cadetblue;
 }
 @media (max-width: 768px) {
-  .btns {
+  .btns  {
     flex-direction: column;
     align-items: center;
+  }
+  .offer-info-container
+  {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 }
 .offer-info-container {
@@ -37,7 +43,6 @@
   gap: 20px;
   margin-top: 20px;
   padding: 10px;
-
   border-radius: 10px;
 }
 

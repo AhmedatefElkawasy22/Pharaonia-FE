@@ -1,0 +1,112 @@
+<div class="mt-20 min-h-screen flex items-center justify-center" [ngClass]="{'dark:bg-gray-900': isDarkMode}">
+    <div
+        class="grid grid-cols-1 md:grid-cols-1 gap-8 w-full max-w-5xl bg-white dark:bg-gray-800 shadow-lg rounded-xl overflow-hidden">
+        <div class="p-8">
+            <h2 class="text-2xl font-semibold text-center mb-6 text-gray-800 dark:text-gray-200">
+                Add Offer
+            </h2>
+            <form [formGroup]="UpdateOffer" (ngSubmit)="onSubmit()" class="space-y-4">
+
+                <!-- Name Input -->
+                <div>
+                    <label for="NameOfDestination" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Name Of Destination</label>
+                    <input type="text" id="NameOfDestination" formControlName="NameOfDestination"
+                        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+                        placeholder="Enter the destination name" />
+                    <div *ngIf="UpdateOffer.get('NameOfDestination')?.touched">
+                        <p *ngIf="UpdateOffer.get('NameOfDestination')?.errors?.['required']" class="text-red-500 text-sm mt-1">
+                            Name is required.</p>
+                        <p *ngIf="UpdateOffer.get('NameOfDestination')?.errors?.['pattern']" class="text-red-500 text-sm mt-1">
+                            Name must be 3-50 characters long and contain only letters/numbers.</p>
+                    </div>
+                </div>
+
+                <!-- Description Input -->
+                <div>
+                    <label for="Description"
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
+                    <textarea type="text" id="Description" formControlName="Description"
+                        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+                        placeholder="Enter a description"></textarea>
+                    <div *ngIf="UpdateOffer.get('Description')?.touched">
+                        <p *ngIf="UpdateOffer.get('Description')?.errors?.['required']" class="text-red-500 text-sm mt-1">
+                            Description is required.</p>
+                        <p *ngIf="UpdateOffer.get('Description')?.errors?.['pattern']" class="text-red-500 text-sm mt-1">
+                            Description must be 5-300 characters long.</p>
+                    </div>
+                </div>
+
+                <!-- Price Input -->
+                <div>
+                    <label for="Price" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Price</label>
+                    <input type="number" id="Price" formControlName="Price"
+                        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+                        placeholder="Enter the destination price" />
+                    <div *ngIf="UpdateOffer.get('Price')?.touched">
+                        <p *ngIf="UpdateOffer.get('Price')?.errors?.['required']" class="text-red-500 text-sm mt-1">
+                            Price is required.</p>
+                        <p *ngIf="UpdateOffer.get('Price')?.errors?.['pattern']" class="text-red-500 text-sm mt-1">
+                            Price must be a valid number (e.g., 5, 99.99, 1000).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- OfferExpiration Input -->
+                <div>
+                    <label for="OfferExpiration"
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-300">Offer Expiration</label>
+                    <div class="flex gap-2 mt-1">
+
+                        <input type="number" id="OfferExpirationNumber" formControlName="OfferExpirationNumber"
+                            class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+                            placeholder="Enter the Offer Expiration Number" />
+
+                        <select id="TypeOfOfferExpirationDate" formControlName="TypeOfOfferExpirationDate"
+                            class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500">
+                            <option [value]="0" selected>Days</option>
+                            <option [value]="1">Hours</option>
+                        </select>
+                    </div>
+                    <div *ngIf="UpdateOffer.get('OfferExpirationNumber')?.touched">
+                        <p *ngIf="UpdateOffer.get('OfferExpirationNumber')?.errors?.['required']"
+                            class="text-red-500 text-sm mt-1">Offer Expiration Number is required.</p>
+                        <p *ngIf="UpdateOffer.get('OfferExpirationNumber')?.errors?.['pattern']"
+                            class="text-red-500 text-sm mt-1">enter a valid number.</p>
+                    </div>
+                </div>
+
+                <!-- duration of journey -->
+                <div>
+                    <label for="durationofjourney"
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-300">Duration of journey</label>
+                    <div class="flex gap-2 mt-1">
+
+                        <input type="number" id="durationofjourney" formControlName="OfferDurationNumber"
+                            class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+                            placeholder="Enter the duration of journey Number" />
+
+                        <select id="TypeOfOfferDuration" formControlName="TypeOfOfferDuration"
+                            class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500">
+                            <option [value]="0" selected>Days</option>
+                            <option [value]="1">Hours</option>
+                        </select>
+                    </div>
+                    <div *ngIf="UpdateOffer.get('OfferDurationNumber')?.touched">
+                        <p *ngIf="UpdateOffer.get('OfferDurationNumber')?.errors?.['required']"
+                            class="text-red-500 text-sm mt-1">Offer Duration Number is required.</p>
+                        <p *ngIf="UpdateOffer.get('OfferDurationNumber')?.errors?.['pattern']"
+                            class="text-red-500 text-sm mt-1">enter a valid number.</p>
+                    </div>
+                </div>
+
+
+                <!-- Submit Button -->
+                <button type="submit"
+                    class="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 disabled:opacity-50"
+                    [disabled]="UpdateOffer.invalid || UpdateOffer.pristine">
+                     Update
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

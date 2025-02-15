@@ -20,12 +20,34 @@ import { UpdateIamgesOfDestinationComponent } from './Components/Admin/update-ia
 import { AddIamgesOfDestinationComponent } from './Components/Admin/add-iamges-of-destination/add-iamges-of-destination.component';
 import { AddDestinationComponent } from './Components/Admin/add-destination/add-destination.component';
 import { BookOfferComponent } from './Components/book-offer/book-offer.component';
+import { UpdateOfferComponent } from './Components/Admin/update-offer/update-offer.component';
+import { UpdateImagesOfOfferComponent } from './Components/Admin/update-images-of-offer/update-images-of-offer.component';
+import { AddImagesToOfferComponent } from './Components/Admin/add-images-to-offer/add-images-to-offer.component';
+import { AddOfferComponent } from './Components/Admin/add-offer/add-offer.component';
+import { ForgotPasswordComponent } from './Components/Admin/forgot-password/forgot-password.component';
+import { VerifyOtpComponent } from './Components/Admin/verify-otp/verify-otp.component';
+import { ResetPasswordComponent } from './Components/Admin/reset-password/reset-password.component';
 
 export const routes: Routes = [
   {
     path: 'admin/login',
     component: LoginComponent,
     title: 'Login',
+  },
+  {
+    path: 'admin/forgot-password',
+    component: ForgotPasswordComponent,
+    title: 'Forgot Password',
+  },
+  {
+    path: 'admin/verify-otp',
+    component: VerifyOtpComponent,
+    title: 'verify OTP',
+  },
+  {
+    path: 'admin/reset-password',
+    component: ResetPasswordComponent,
+    title: 'Reset Password',
   },
   {
     path: 'admin',
@@ -46,7 +68,11 @@ export const routes: Routes = [
       { path: 'add-destination',component:AddDestinationComponent ,title:"Add New Destination"},
       { path: 'offers', component: OffersComponent, title: 'All available offers', },
       { path: 'expired-offers', component: OffersComponent, title: 'All expired offers', },
-      { path: 'offer/:offerId', component: OneOfferComponent, title: 'Offer', }
+      { path: 'offer/:offerId', component: OneOfferComponent, title: 'Offer', },
+      { path: 'update-offer', component:UpdateOfferComponent,title:"Update Offer"},
+      { path: 'update-iamges-of-offer/:offerId', component:UpdateImagesOfOfferComponent , title : "Update Images of Offer"},
+      { path: 'add-images-to-offer/:offerId' ,component:AddImagesToOfferComponent,title:"Add Images of Offer"},
+      { path: 'add-offer',component:AddOfferComponent ,title:"Add New Offer"},   
     ]
   },
 

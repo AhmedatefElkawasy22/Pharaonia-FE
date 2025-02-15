@@ -1,52 +1,49 @@
-import { NgClass, NgFor, NgIf } from '@angular/common';
-import {  Component } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { FormControl, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { OfferService } from '../../../Services/offer/offerService.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { NgClass, NgIf, Location, NgFor } from '@angular/common';
 import { AlertDialogComponent } from '../../alert-dialog/alert-dialog.component';
-import { DestinationServiceService } from '../../../Services/destination/destination-service.service';
 
 @Component({
-  selector: 'app-add-destination',
+  selector: 'app-add-images-to-offer',
   standalone: true,
-  imports: [NgIf, ReactiveFormsModule, NgFor, NgClass],
-  templateUrl: './add-destination.component.html',
-  styleUrl: './add-destination.component.css'
+  imports: [NgIf, NgFor, NgClass,ReactiveFormsModule],
+  templateUrl: './add-images-to-offer.component.html',
+  styleUrl: './add-images-to-offer.component.css'
 })
-export class AddDestinationComponent {
-  AddDestination: FormGroup;
-  isDarkMode: boolean;
+export class AddImagesToOfferComponent {
+  AddImagesToOffer: FormGroup;
   isSubmitting: boolean = false;
+  isDarkMode!: boolean
+  offerId!: number;
 
-  constructor(
-    private _router: Router,
-    private _dialog: MatDialog,
-    private _destinationService: DestinationServiceService,
-    private fb: FormBuilder,
-  ) {
+  constructor(private fb: FormBuilder, private _location: Location, private _offerService: OfferService, private _router: Router, private _dialog: MatDialog, private _activatedRoute: ActivatedRoute) {
+    const id = this._activatedRoute.snapshot.paramMap.get('offerId');
+    this.offerId = id ? Number(id) : 0;
+    if (this.offerId == 0) {
+      this.openAlertDialog("Error", "An error occurred, try again later.");
+      setTimeout(() => {
+        this._location.back();
+      }, 2000);
+    }
     this.isDarkMode = localStorage.getItem('theme') === 'dark';
-
-    this.AddDestination = this.fb.group({
-      Name: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{3,50}$')]],
-      Description: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ,.]{5,500}$')]],
-      DestinationCategory: ['0', [Validators.required]],
-      Images: this.fb.array([this.createImageControl()]),
+    this.AddImagesToOffer = this.fb.group({
+      Images: this.fb.array([]),
     });
   }
 
+
+
   onSubmit() {
-    if (this.AddDestination.invalid || this.isSubmitting) {
-      this.openAlertDialog('Error', 'Please fill all the fields correctly.');
+    if (this.AddImagesToOffer.invalid || this.isSubmitting) {
+      this.openAlertDialog('Error', 'Please enter valid images.');
       return;
     }
 
     this.isSubmitting = true;
     const formData = new FormData();
-
-    formData.append('Name', this.AddDestination.value.Name);
-    formData.append('Description', this.AddDestination.value.Description);
-    formData.append('DestinationCategory', this.AddDestination.value.DestinationCategory);
 
     this.Images.controls.forEach((control) => {
       const file = control.value as File;
@@ -55,14 +52,14 @@ export class AddDestinationComponent {
       }
     });
 
-    this._destinationService.AddDestination(formData).subscribe({
+    this._offerService.AddImagesToOffer(this.offerId, formData).subscribe({
       next: (res) => {
         this.openAlertDialog('Success', res);
         this.isSubmitting = false;
-        this.AddDestination.reset();
+        this.AddImagesToOffer.reset();
         this.Images.clear();
         setTimeout(() => {
-          this._router.navigate(['/admin/destination']);
+          this._location.back();
         }, 3000);
       },
       error: (err) => {
@@ -73,7 +70,7 @@ export class AddDestinationComponent {
   }
 
   get Images(): FormArray {
-    return this.AddDestination.get('Images') as FormArray;
+    return this.AddImagesToOffer.get('Images') as FormArray;
   }
 
   addimage(): void {
@@ -87,7 +84,7 @@ export class AddDestinationComponent {
       this.Images.updateValueAndValidity();
     }
   }
-  
+
 
   private createImageControl(): FormControl {
     return new FormControl(null, Validators.required);
@@ -106,7 +103,7 @@ export class AddDestinationComponent {
       // Assign the selected file to the form control
       this.Images.at(index).setValue(file);
       this.Images.markAsTouched();
-      this.AddDestination.markAsDirty();
+      this.AddImagesToOffer.markAsDirty();
     }
   }
 

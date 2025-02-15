@@ -1,4 +1,4 @@
 export interface Gallery {
-  pathImage:string;
+   pathImage:string;
    id:number;
 }

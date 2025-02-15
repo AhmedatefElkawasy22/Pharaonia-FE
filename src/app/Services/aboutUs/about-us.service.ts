@@ -27,6 +27,7 @@ export class AboutUsService {
       return of(null);
     }
   }
+
   AddAboutUs(data: any): Observable<any> {
     const token = localStorage.getItem("token");
     if (token && this._accountServices.isTokenValid()) {
@@ -39,6 +40,7 @@ export class AboutUsService {
       return of(null);
     }
   }
+  
   DeleteAboutUs(): Observable<any> {
     const token = localStorage.getItem("token");
     if (token && this._accountServices.isTokenValid()) {

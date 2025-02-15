@@ -1,0 +1,26 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4">
+    <form class="form" (submit)="$event.preventDefault()">
+        <div class="content">
+            <p>OTP Verification</p>
+            <div class="inp">
+                <input *ngFor="let _ of [1,2,3,4,5,6]; let i = index" #otpInput type="text" class="input"
+                    [class.filled]="isInputFilled(i)" maxlength="1" [disabled]="isSubmitting"
+                    (input)="onInput($event, i)" (keydown)="onKeyDown($event, i)" (paste)="onPaste($event)" >
+            </div>
+            <button [disabled]="isSubmitting" (click)="verifyOTP()">
+                {{ isSubmitting ? 'Verifying...' : 'Verify' }}
+            </button>
+            <button [disabled]="isResending || cooldownTime > 0" (click)="resetOTP()">
+                {{ isResending ? 'Resending...' : (cooldownTime > 0 ? 'Wait ' + cooldownTime + 's' : 'Resend OTP') }}
+            </button>
+
+            <svg class="svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#4073ff"
+                    d="M56.8,-23.9C61.7,-3.2,45.7,18.8,26.5,31.7C7.2,44.6,-15.2,48.2,-35.5,36.5C-55.8,24.7,-73.9,-2.6,-67.6,-25.2C-61.3,-47.7,-30.6,-65.6,-2.4,-64.8C25.9,-64.1,51.8,-44.7,56.8,-23.9Z"
+                    transform="translate(100 100)" class="path">
+                </path>
+            </svg>
+        </div>
+    </form>
+    
+</div>

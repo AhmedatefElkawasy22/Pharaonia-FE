@@ -4,15 +4,17 @@
     <h1 class="text-5xl font-extrabold text-primary mb-6 uppercase tracking-wide drop-shadow-lg">
       {{ offer.nameOfDestination }}
     </h1>
+      <div class="offer-info-container">
+        <div class="offer-duration"><i class="fa-solid fa-calendar" style="color: #d3ca1e"></i> Duration of journey : <br> {{
+          offer.offerDuration }}</div>
 
-    <div class="offer-info-container">
-      <div class="offer-duration"><i class="fa-solid fa-calendar" style="color: #d3ca1e"></i> Duration of journey : {{
-        offer.offerDuration }}</div>
-
-      <div class="offer-expire">
-        ⏳ Expire On: {{ getFormattedDate(offer.expireOn) }}
+        <div class="offer-expire" *ngIf="IsAdmin">
+          ⏳ Expire On: <br> {{ getFormattedDate(offer.expireOn) }}
+        </div>
+        <div class="offer-expire" *ngIf="IsAdmin">
+          ⏳ duration Of Expiration: <br> {{ offer.durationOfExpiration }}
+        </div>
       </div>
-    </div>
   </div>
 
   <p class="text-lg leading-relaxed tracking-wide text-justify text-gray-300 px-6 mb-8">
@@ -48,7 +50,16 @@
   </div>
 
   <div class="flex justify-center mt-6">
-    <button routerLink="/book-offer/{{offer.id}}" class="btn">Book Now</button>
+    <div class="btns" *ngIf="IsAdmin==true">
+      <button *ngIf="offer.expired==true" class="btn btn-outline btn-primary" (click)="Reactive()">Reactive</button>
+      <button class="btn btn-outline btn-primary" (click)="Update()">Update Offer</button>
+      <button class="btn btn-outline btn-primary" routerLink="/admin/update-iamges-of-offer/{{offer.id}}">update
+        images</button>
+      <button class="btn btn-outline btn-primary" (click)="Delete()">Delete</button>
+      <button class="btn btn-outline btn-primary" routerLink="/admin/add-images-to-offer/{{offer.id}}">Add
+        images</button>
+    </div>
+    <button *ngIf="IsAdmin!=true" routerLink="/book-offer/{{offer.id}}" class="btn w-full">Book Now</button>
   </div>
 
   <ng-template #noData>

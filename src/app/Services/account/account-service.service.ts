@@ -67,4 +67,16 @@ export class AccountServiceService {
     }
   }
 
+  ForgotPassword(email: string) : Observable<any> {
+    return this._http.post(`${environment.BaseURL}/api/Account/Forgot-Password/${email}`,{},{responseType: 'text'});
+  }
+
+  VerifyOTP(body:any) : Observable<any> {
+    return this._http.post(`${environment.BaseURL}/api/Account/Verify-Otp`, body, {responseType: 'text'});
+  }
+
+  ResetPassword(body:any) : Observable<any> {
+    return this._http.post(`${environment.BaseURL}/api/Account/Reset-Password`, body, {responseType: 'text'});
+  }
+
 }

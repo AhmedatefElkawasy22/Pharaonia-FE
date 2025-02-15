@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean> | Promise<boolean> | boolean {
 
     if (this._accountService.isTokenValid()) {
-      // console.log('token is valid');
+      //consدole.log('token is valid');
       return true; 
     } else {
       this.router.navigate(['/admin/login']);
