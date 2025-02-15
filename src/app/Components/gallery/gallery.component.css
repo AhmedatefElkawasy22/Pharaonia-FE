@@ -6,6 +6,7 @@
   text-align: center;
   margin-bottom: 32px;
 }
+
 .carousel {
   width: 100%;
   overflow-x: auto;
@@ -36,3 +37,6 @@
 .carousel-item:hover {
   transform: scale(1.05);
 }
+
+
+
