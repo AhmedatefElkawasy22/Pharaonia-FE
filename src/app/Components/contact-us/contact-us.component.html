@@ -1,1 +1,174 @@
-<p>contact-us works!</p>
+<div
+  class="register-page min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-1 gap-8 w-full max-w-5xl bg-white dark:bg-gray-800 shadow-lg rounded-xl overflow-hidden"
+  >
+    <!-- Contact US Form -->
+    <div class="p-8">
+      <h2
+        class="text-2xl font-semibold text-center mb-6 text-gray-800 dark:text-gray-200"
+      >
+        Contact US
+      </h2>
+      <form
+        [formGroup]="ContactUsForm"
+        (ngSubmit)="onSubmit()"
+        class="space-y-4"
+      >
+        <!-- Name Input -->
+        <div>
+          <label
+            for="name"
+            class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >Name</label
+          >
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+          />
+          <div *ngIf="ContactUsForm.get('name')?.touched">
+            <p
+              *ngIf="ContactUsForm.get('name')?.errors?.['required']"
+              class="text-red-500 text-sm mt-1"
+            >
+              Name is required.
+            </p>
+            <p
+              *ngIf="ContactUsForm.get('name')?.errors?.['pattern']"
+              class="text-red-500 text-sm mt-1"
+            >
+              Name must contain only alphabets and numbers (3-50 characters).
+            </p>
+            <p
+              *ngIf="ContactUsForm.get('name')?.errors?.['minlength']"
+              class="text-red-500 text-sm mt-1"
+            >
+              Name must be at least 5 characters long.
+            </p>
+          </div>
+        </div>
+        <!-- email Input -->
+        <div>
+          <label
+            for="email"
+            class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >Email</label
+          >
+          <input
+            type="text"
+            id="email"
+            formControlName="email"
+            class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+          />
+          <div *ngIf="ContactUsForm.get('email')?.touched">
+            <p
+              *ngIf="ContactUsForm.get('email')?.errors?.['required']"
+              class="text-red-500 text-sm mt-1"
+            >
+              Email is required.
+            </p>
+            <p
+              *ngIf="ContactUsForm.get('email')?.errors?.['pattern']"
+              class="text-red-500 text-sm mt-1"
+            >
+              Email must be valid.
+            </p>
+            <p
+              *ngIf="ContactUsForm.get('email')?.errors?.['minlength']"
+              class="text-red-500 text-sm mt-1"
+            >
+              Email must be at least 5 characters long.
+            </p>
+          </div>
+        </div>
+
+        <!-- Phone Number Input -->
+        <div>
+          <label
+            for="phone"
+            class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >Phone Number</label
+          >
+          <div class="flex gap-2 mt-1">
+            <select
+              id="countryCode"
+              class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+              [(ngModel)]="codeOfCountry"
+              [ngModelOptions]="{ standalone: true }"
+            >
+              <option value="">Select Code</option>
+              <option
+                *ngFor="let country of countryCodes"
+                [value]="country.code"
+              >
+                {{ country.name }} ({{ country.code }})
+              </option>
+            </select>
+
+            <input
+              type="text"
+              id="phone"
+              formControlName="phone"
+              class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+              placeholder="Enter your phone number"
+            />
+          </div>
+          <div *ngIf="ContactUsForm.get('phone')?.touched">
+            <p
+              *ngIf="ContactUsForm.get('phone')?.errors?.['required']"
+              class="text-red-500 text-sm mt-1"
+            >
+              Phone number is required.
+            </p>
+            <p
+              *ngIf="ContactUsForm.get('phone')?.errors?.['pattern']"
+              class="text-red-500 text-sm mt-1"
+            >
+              Enter a valid phone number (10-15 digits).
+            </p>
+          </div>
+        </div>
+        <!-- Message Input -->
+        <div>
+          <label
+            for="message"
+            class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >Message</label
+          >
+          <textarea
+            type="text"
+            id="message"
+            formControlName="message"
+            class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+            placeholder="Enter a Message"
+          ></textarea>
+          <div *ngIf="ContactUsForm.get('message')?.touched">
+            <p
+              *ngIf="ContactUsForm.get('message')?.errors?.['required']"
+              class="text-red-500 text-sm mt-1"
+            >
+              Message is required.
+            </p>
+            <p
+              *ngIf="ContactUsForm.get('message')?.errors?.['pattern']"
+              class="text-red-500 text-sm mt-1"
+            >
+              Message must be 5-300 characters long.
+            </p>
+          </div>
+        </div>
+        <!-- Submit Button -->
+        <button
+          [disabled]="ContactUsForm.invalid"
+          type="submit"
+          class="w-full py-3 bg-primary text-white font-semibold rounded-lg shadow hover:bg-primary-dark dark:bg-primary-dark dark:hover:bg-primary"
+        >
+          Contact US
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -9,10 +9,10 @@ import { OfferService } from '../../Services/offer/offerService.service';
 
 @Component({
   selector: 'app-home',
-  standalone: true,
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  standalone: true, 
   imports: [NgFor, NgIf, RouterLink, GalleryComponent],
+  templateUrl:'./home.component.html',
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
   destinations: Destination[] = [];

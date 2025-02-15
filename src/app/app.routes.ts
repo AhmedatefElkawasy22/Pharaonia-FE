@@ -19,6 +19,7 @@ import { UpdateDestinationComponent } from './Components/Admin/update-destinatio
 import { UpdateIamgesOfDestinationComponent } from './Components/Admin/update-iamges-of-destination/update-iamges-of-destination.component';
 import { AddIamgesOfDestinationComponent } from './Components/Admin/add-iamges-of-destination/add-iamges-of-destination.component';
 import { AddDestinationComponent } from './Components/Admin/add-destination/add-destination.component';
+import { BookOfferComponent } from './Components/book-offer/book-offer.component';
 
 export const routes: Routes = [
   {
@@ -64,6 +65,7 @@ export const routes: Routes = [
       { path: 'aboutUs', component: AboutUsComponent, title: 'About Us', },
       { path: 'contactUs', component: ContactUsComponent, title: 'Contact Us', },
       { path: 'gallery', component: GalleryComponent, title: 'Gallery', },
+      { path: 'book-offer/:offerId', component: BookOfferComponent, title: 'Book Offer', }
     ],
   },
   { path: '**', component: NotFoundComponent, title: 'not-found-page' },

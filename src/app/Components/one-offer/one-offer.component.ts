@@ -1,13 +1,13 @@
 import { OfferService } from './../../Services/offer/offerService.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Offer } from '../../Models/offer';
 import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-one-offer',
   standalone: true,
-  imports: [NgIf, NgFor],
+  imports: [NgIf, NgFor,RouterLink],
   templateUrl: './one-offer.component.html',
   styleUrls: ['./one-offer.component.css'],
 })
@@ -21,9 +21,11 @@ export class OneOfferComponent implements OnInit {
     private route: ActivatedRoute,
     private OfferService: OfferService
   ) {}
+
   getFormattedDate(dateString: string): string {
     return new Date(dateString).toLocaleDateString('en-GB');
   }
+
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('offerId');
     this.offerID = id ? Number(id) : 0;
@@ -76,4 +78,6 @@ export class OneOfferComponent implements OnInit {
 
     this.currentIndex = index;
   }
+
+
 }

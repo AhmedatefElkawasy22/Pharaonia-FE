@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Destination } from '../../Models/destination';
 import { environment } from '../../../environment/environment';
 import { AccountServiceService } from '../account/account-service.service';
+import { Image } from '../../Models/image';
 
 @Injectable({
   providedIn: 'root'
@@ -34,13 +35,13 @@ export class DestinationServiceService {
     return this._http.get<Destination[]>(`${environment.BaseURL}/Get-Destinations-Based-On-Category/${Category}`);
   }
 
-  GetImagesOfDestination(id:number):Observable<any>{
+  GetImagesOfDestination(id:number):Observable<Image[] | null>{
     const token = localStorage.getItem("token");
     if (token && this._accountService.isTokenValid()) {
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}`
       });
-      return this._http.get(`${environment.BaseURL}/Get-Images-Of-Destination/${id}`,{responseType: 'text' , headers});
+      return this._http.get<Image[]>(`${environment.BaseURL}/Get-Images-Of-Destination/${id}`,{headers});
     } else {
       this._accountService.logout();
       return of(null);
@@ -113,6 +114,31 @@ export class DestinationServiceService {
     }
   }
 
+  DeleteImageFromDestination(id:number):Observable<any>{
+    const token = localStorage.getItem("token");
+    if (token && this._accountService.isTokenValid()) {
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+      return this._http.delete(`${environment.BaseURL}/Delete-Image-From-Destination/${id}`,{responseType: 'text' , headers});
+    } else {
+      this._accountService.logout();
+      return of(null);
+    }
+  }
+
+  DeleteAllImagesFromDestination(id:number):Observable<any>{
+    const token = localStorage.getItem("token");
+    if (token && this._accountService.isTokenValid()) {
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+      return this._http.delete(`${environment.BaseURL}/Delete-All-Image-From-Destination/${id}`,{responseType: 'text' , headers});
+    } else {
+      this._accountService.logout();
+      return of(null);
+    }
+  }
   
 
 }

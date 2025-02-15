@@ -1,0 +1,156 @@
+.container {
+    margin-top: 80px;
+}
+
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.dark::bg-gray-800 {
+    background-color: #1a202c;
+}
+
+.text-gray-800 {
+    color: #5a6680;
+}
+
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 174, 255, 0.2);
+}
+
+.btn {
+    margin-top: 10px;
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.5s ease;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #4338ca, #4f46e5);
+    transition: background 0.9s ease;
+    animation: pulse 1s infinite;
+}
+
+/* no old images   */
+.cardNoOldImages {
+    width: 400px;
+    padding-right: 10px;
+    height: fit-content;
+    padding-bottom: 12px;
+    background: lightgrey;
+    border-left-style: solid;
+    border-left-color: red;
+    border-left-width: 15px;
+    border-radius: 15px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    background: linear-gradient(to right, #f7575756, #f7575725 50%, #f7575738);
+}
+
+.cardNoOldImages svg {
+    height: 40px;
+    padding-left: 10px;
+    padding-top: 12px;
+    fill: red;
+    float: left;
+}
+
+.cardNoOldImages p {
+    float: left;
+    padding-top: 13px;
+    padding-left: 15px;
+    color: #0f172a;
+    font-size: 18px;
+    font-style: italic;
+}
+
+.cardNoOldImages span {
+    display: flex;
+    align-items: left;
+}
+
+/* deleteImage btn  */
+.deleteImage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(20, 20, 20);
+    border: none;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+    cursor: pointer;
+    transition-duration: 0.3s;
+    overflow: hidden;
+    position: relative;
+    gap: 1px;
+  }
+  
+  .svgIcon {
+    width: 12px;
+    transition-duration: 0.3s;
+  }
+  
+  .svgIcon path {
+    fill: white;
+  }
+  
+  .button:hover {
+    width: 140px;
+    border-radius: 50px;
+    transition-duration: 0.3s;
+    background-color: rgb(255, 69, 69);
+    align-items: center;
+    gap: 0;
+  }
+  
+  .button:hover .bin-bottom {
+    width: 50px;
+    transition-duration: 0.3s;
+    transform: translateY(60%);
+  }
+  .bin-top {
+    transform-origin: bottom right;
+  }
+  .button:hover .bin-top {
+    width: 50px;
+    transition-duration: 0.3s;
+    transform: translateY(60%) rotate(160deg);
+  }
+  .button::before {
+    position: absolute;
+    top: -20px;
+    content: "Delete";
+    color: white;
+    transition-duration: 0.3s;
+    font-size: 2px;
+  }
+  
+  .button:hover::before {
+    font-size: 13px;
+    opacity: 1;
+    transform: translateY(35px);
+    transition-duration: 0.3s;
+  }
+  /* _________________________ */
+
