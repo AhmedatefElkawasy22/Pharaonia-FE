@@ -9,29 +9,29 @@
       <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
         <li routerLink="/admin/home"><a>Home</a></li>
         <li>
-          <details #destinationDropdown>
+          <details #mobileDestinationDropdown>
             <summary>Destinations</summary>
             <ul class="p-2 z-[10]">
-              <li routerLink="/admin/destination" (click)="closeDropdown(destinationDropdown)">
+              <li routerLink="/admin/destination" (click)="closeDropdown(mobileDestinationDropdown)">
                 <a>All Destinations</a>
               </li>
-              <li routerLink="/admin/destination-egypt" (click)="closeDropdown(destinationDropdown)">
+              <li routerLink="/admin/destination-egypt" (click)="closeDropdown(mobileDestinationDropdown)">
                 <a>Destinations In Egypt</a>
               </li>
-              <li routerLink="/admin/destination-outside-egypt" (click)="closeDropdown(destinationDropdown)">
+              <li routerLink="/admin/destination-outside-egypt" (click)="closeDropdown(mobileDestinationDropdown)">
                 <a>Destinations Outside Egypt</a>
               </li>
             </ul>
           </details>
         </li>
         <li>
-          <details #offersDropdown>
+          <details #mobileOffersDropdown>
             <summary>Offers</summary>
             <ul class="p-2 z-[10]">
-              <li routerLink="/admin/offers" (click)="closeDropdown(offersDropdown)">
+              <li routerLink="/admin/offers" (click)="closeDropdown(mobileOffersDropdown)">
                 <a>available offers</a>
               </li>
-              <li routerLink="/admin/expired-offers" (click)="closeDropdown(offersDropdown)">
+              <li routerLink="/admin/expired-offers" (click)="closeDropdown(mobileOffersDropdown)">
                 <a>expired offers</a>
               </li>
             </ul>
@@ -46,29 +46,29 @@
     <ul class="menu menu-horizontal px-1">
       <li routerLink="/admin/home"><a>Home</a></li>
       <li>
-        <details #destinationDropdown>
+        <details #desktopDestinationDropdown>
           <summary>Destinations</summary>
           <ul class="p-2 z-[10]">
-            <li routerLink="/admin/destination" (click)="closeDropdown(destinationDropdown)">
+            <li routerLink="/admin/destination" (click)="closeDropdown(desktopDestinationDropdown)">
               <a>All Destinations</a>
             </li>
-            <li routerLink="/admin/destination-egypt" (click)="closeDropdown(destinationDropdown)">
+            <li routerLink="/admin/destination-egypt" (click)="closeDropdown(desktopDestinationDropdown)">
               <a>Destinations In Egypt</a>
             </li>
-            <li routerLink="/admin/destination-outside-egypt" (click)="closeDropdown(destinationDropdown)">
+            <li routerLink="/admin/destination-outside-egypt" (click)="closeDropdown(desktopDestinationDropdown)">
               <a>Destinations Outside Egypt</a>
             </li>
           </ul>
         </details>
       </li>
       <li>
-        <details #offersDropdown>
+        <details #desktopOffersDropdown>
           <summary>Offers</summary>
           <ul class="p-2 z-[10]">
-            <li routerLink="/admin/offers" (click)="closeDropdown(offersDropdown)">
+            <li routerLink="/admin/offers" (click)="closeDropdown(desktopOffersDropdown)">
               <a>available offers</a>
             </li>
-            <li routerLink="/admin/expired-offers" (click)="closeDropdown(offersDropdown)">
+            <li routerLink="/admin/expired-offers" (click)="closeDropdown(desktopOffersDropdown)">
               <a>expired offers</a>
             </li>
           </ul>
@@ -93,6 +93,5 @@
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
       </svg>
     </label>
-
   </div>
 </div>
