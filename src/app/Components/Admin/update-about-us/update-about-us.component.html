@@ -1,1 +1,60 @@
-<p>update-about-us works!</p>
+<div
+  class="register-page min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-1 gap-8 w-full max-w-5xl bg-white dark:bg-gray-800 shadow-lg rounded-xl overflow-hidden"
+  >
+    <!-- AboutUs Form -->
+    <div class="p-8">
+      <h2
+        class="text-2xl font-semibold text-center mb-6 text-gray-800 dark:text-gray-200"
+      >
+        Update About US
+      </h2>
+      <form
+        [formGroup]="UpdateAboutUsForm"
+        (ngSubmit)="onSubmit()"
+        class="space-y-4"
+      >
+        >
+        <!-- AboutUs Input -->
+        <div>
+          <label
+            for="text"
+            class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >Update AboutUS</label
+          >
+          <textarea
+            type="text"
+            id="text"
+            formControlName="text"
+            class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+            placeholder="Type Here"
+          ></textarea>
+          <div *ngIf="UpdateAboutUsForm.get('text')?.touched">
+            <p
+              *ngIf="UpdateAboutUsForm.get('text')?.errors?.['required']"
+              class="text-red-500 text-sm mt-1"
+            >
+              Text is required.
+            </p>
+            <p
+              *ngIf="UpdateAboutUsForm.get('text')?.errors?.['pattern']"
+              class="text-red-500 text-sm mt-1"
+            >
+              Text must be 5-300 characters long.
+            </p>
+          </div>
+        </div>
+        <!-- Submit Button -->
+        <button
+          [disabled]="UpdateAboutUsForm.invalid"
+          type="submit"
+          class="w-full py-3 bg-primary text-white font-semibold rounded-lg shadow hover:bg-primary-dark dark:bg-primary-dark dark:hover:bg-primary"
+        >
+          Update
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

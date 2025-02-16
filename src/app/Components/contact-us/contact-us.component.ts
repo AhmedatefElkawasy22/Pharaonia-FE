@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl,FormGroup,FormsModule,ReactiveFormsModule,Validators} from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { NgFor, NgIf } from '@angular/common';
@@ -126,7 +132,6 @@ export class ContactUsComponent implements OnInit {
   contactUsData: ContactUs[] = [];
 
   constructor(
-
     private _ContactusService: ContactusService,
     private _router: Router,
     private _dialog: MatDialog
@@ -145,7 +150,7 @@ export class ContactUsComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       message: new FormControl('', [
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9 ,.]{5,500}$')
+        Validators.pattern('^[a-zA-Z0-9 ,.]{5,500}$'),
       ]),
     });
   }
@@ -160,7 +165,6 @@ export class ContactUsComponent implements OnInit {
     }
   }
 
-
   onSubmit() {
     if (this.ContactUsForm.valid) {
       const phoneNumber = this.ContactUsForm.get('phone')?.value;
@@ -171,7 +175,7 @@ export class ContactUsComponent implements OnInit {
 
       this.ContactUsForm.get('phone')?.setValue(modifiedPhoneNumber);
 
-     // console.log('data as json', this.ContactUsForm.value);
+      // console.log('data as json', this.ContactUsForm.value);
 
       this._ContactusService.AddContactUs(this.ContactUsForm.value).subscribe(
         (response) => {
@@ -182,7 +186,7 @@ export class ContactUsComponent implements OnInit {
           }, 3000);
         },
         (error) => {
-        // console.error('contact failed:', error);
+          // console.error('contact failed:', error);
           this.openAlertDialog('Error', error.error);
           // Reset the phone number back to the original value
           this.ContactUsForm.get('phone')?.setValue(originalPhoneNumber);
