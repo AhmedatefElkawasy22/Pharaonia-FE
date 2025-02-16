@@ -1,0 +1,38 @@
+.options {
+    margin-top: 80px;
+}
+
+.title {
+    font-style: italic;
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.line {
+    width: 200px;
+    height: 3px;
+    margin: 0 auto 32px;
+    color: #9040cd;
+}
+
+.card {
+    width: 290px;
+    height: 254px;
+    background: #0f172a;
+    transition: all 0.4s;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.card:hover {
+    border-radius: 15px;
+    cursor: pointer;
+    transform: scale(1.2);
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
+    background: #0f172a;
+}

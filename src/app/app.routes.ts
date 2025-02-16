@@ -27,6 +27,7 @@ import { AddOfferComponent } from './Components/Admin/add-offer/add-offer.compon
 import { ForgotPasswordComponent } from './Components/Admin/forgot-password/forgot-password.component';
 import { VerifyOtpComponent } from './Components/Admin/verify-otp/verify-otp.component';
 import { ResetPasswordComponent } from './Components/Admin/reset-password/reset-password.component';
+import { ShowContactUsComponent } from './Components/Admin/show-contact-us/show-contact-us.component';
 
 export const routes: Routes = [
   {
@@ -72,7 +73,9 @@ export const routes: Routes = [
       { path: 'update-offer', component:UpdateOfferComponent,title:"Update Offer"},
       { path: 'update-iamges-of-offer/:offerId', component:UpdateImagesOfOfferComponent , title : "Update Images of Offer"},
       { path: 'add-images-to-offer/:offerId' ,component:AddImagesToOfferComponent,title:"Add Images of Offer"},
-      { path: 'add-offer',component:AddOfferComponent ,title:"Add New Offer"},   
+      { path: 'add-offer',component:AddOfferComponent ,title:"Add New Offer"}, 
+      {path: 'view-all-contactus',component:ShowContactUsComponent,title:"View All Contact Us"},  
+      {path: 'view-Not-contacted-contactus',component:ShowContactUsComponent,title:"View Not contacted Contact Us"},  
     ]
   },
 
