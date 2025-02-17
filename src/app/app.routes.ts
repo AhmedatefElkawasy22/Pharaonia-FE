@@ -28,6 +28,8 @@ import { ForgotPasswordComponent } from './Components/Admin/forgot-password/forg
 import { VerifyOtpComponent } from './Components/Admin/verify-otp/verify-otp.component';
 import { ResetPasswordComponent } from './Components/Admin/reset-password/reset-password.component';
 import { ShowContactUsComponent } from './Components/Admin/show-contact-us/show-contact-us.component';
+import { AddAboutUSComponent } from './Components/Admin/add-about-us/add-about-us.component';
+import { UpdateAboutUSComponent } from './Components/Admin/update-about-us/update-about-us.component';
 
 export const routes: Routes = [
   {
@@ -73,9 +75,11 @@ export const routes: Routes = [
       { path: 'update-offer', component:UpdateOfferComponent,title:"Update Offer"},
       { path: 'update-iamges-of-offer/:offerId', component:UpdateImagesOfOfferComponent , title : "Update Images of Offer"},
       { path: 'add-images-to-offer/:offerId' ,component:AddImagesToOfferComponent,title:"Add Images of Offer"},
-      { path: 'add-offer',component:AddOfferComponent ,title:"Add New Offer"}, 
-      {path: 'view-all-contactus',component:ShowContactUsComponent,title:"View All Contact Us"},  
-      {path: 'view-Not-contacted-contactus',component:ShowContactUsComponent,title:"View Not contacted Contact Us"},  
+      { path: 'add-offer',component:AddOfferComponent ,title:"Add New Offer"},
+      {path: 'view-all-contactus',component:ShowContactUsComponent,title:"View All Contact Us"},
+      {path: 'view-Not-contacted-contactus',component:ShowContactUsComponent,title:"View Not contacted Contact Us"},
+      {path: "add-about-us",component:AddAboutUSComponent,title:"Add About Us"},
+      {path: "update-about-us",component:UpdateAboutUSComponent,title:"Update About Us"}
     ]
   },
 
