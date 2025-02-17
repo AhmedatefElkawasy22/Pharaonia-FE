@@ -1,9 +1,9 @@
 <div class="container mx-auto p-6 mt-12 mb-10">
-    <div *ngIf="oldImages.length > 0; else noData" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-      <div *ngFor="let image of oldImages"
+    <div *ngIf="Images.length > 0; else noData" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+      <div *ngFor="let image of Images"
           class="card transition duration-300 transform hover:scale-105 hover:shadow-2xl">
           <figure>
-              <img [src]="image.path" 
+              <img [src]="image.pathImage" 
                    alt="Image of Destination" 
                    class="w-full h-48 object-cover rounded-t-lg cursor-pointer" 
                    (click)="showOverlay(image)" />
@@ -45,7 +45,7 @@
     <div *ngIf="selectedImage" 
          class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75"
          (click)="closeOverlay()">
-      <img [src]="selectedImage.path" 
+      <img [src]="selectedImage.pathImage" 
            alt="Full size image" 
            class="max-h-[90vh] max-w-[90vw] object-contain"
            (click)="$event.stopPropagation()" />
@@ -59,7 +59,7 @@
                       <path d="m569.517 440.013c18.458 31.994-4.711 71.987-41.577 71.987h-479.886c-36.937 0-59.999-40.055-41.577-71.987l239.946-416.028c18.467-32.009 64.72-31.951 83.154 0zm-281.517-86.013c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346 7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z">
                       </path>
                   </svg>
-                  <p>There are no images added before to this destination.</p>
+                  <p>There are no images added before to the gallery.</p>
               </span>
           </div>
       </div>
@@ -82,7 +82,7 @@
         <p class="[text-shadow:0px_1px_1px_0px_#950000]">Delete All images</p>
     </button>
 
-    <button [routerLink]="['/admin/add-images-to-destination', DestinationID]"
+    <button [routerLink]="['/admin/add-images-to-gallery']"
         class="mt-12 flex h-fit w-full items-center justify-center gap-[0.5em] rounded-full bg-[#1a202c] px-[2em] py-[1em] text-white shadow-[inset_0px_-4px_4px_0px_#f05b5b,0px_0px_0px_2px_#1a202c,0px_4px_0px_0px_#1a202c] duration-[250ms] hover:translate-y-[0.25em] active:translate-y-[0.5em] active:shadow-[inset_0px_-4px_4px_0px_#f05b5b,0px_0px_0px_2px_#f9d1d1]">
         <p class="[text-shadow:0px_1px_1px_0px_#950000]">Add new images</p>
     </button>

@@ -30,6 +30,8 @@ import { ResetPasswordComponent } from './Components/Admin/reset-password/reset-
 import { ShowContactUsComponent } from './Components/Admin/show-contact-us/show-contact-us.component';
 import { ShowImagesOfGalleryComponent } from './Components/Admin/show-images-of-gallery/show-images-of-gallery.component';
 import { AddImagesToGalleryComponent } from './Components/Admin/add-images-to-gallery/add-images-to-gallery.component';
+import { AddAboutUSComponent } from './Components/Admin/add-about-us/add-about-us.component';
+import { UpdateAboutUSComponent } from './Components/Admin/update-about-us/update-about-us.component';
 
 export const routes: Routes = [
   {
@@ -79,10 +81,11 @@ export const routes: Routes = [
       {path: 'view-all-contactus',component:ShowContactUsComponent,title:"View All Contact Us"},  
       {path: 'view-Not-contacted-contactus',component:ShowContactUsComponent,title:"View Not contacted Contact Us"},  
       {path: 'show-images-of-gallery',component:ShowImagesOfGalleryComponent,title:"Show Images Of Gallery"},
-      {path:'add-images-to-gallery',component:AddImagesToGalleryComponent,title:"Add Images To Gallery"}
+      {path:'add-images-to-gallery',component:AddImagesToGalleryComponent,title:"Add Images To Gallery"},
+      {path: "add-about-us",component:AddAboutUSComponent,title:"Add About Us"},
+      {path: "update-about-us",component:UpdateAboutUSComponent,title:"Update About Us"}
     ]
   },
-
   {
     path: '',
     component: LayoutComponent,
@@ -98,7 +101,7 @@ export const routes: Routes = [
       { path: 'aboutUs', component: AboutUsComponent, title: 'About Us', },
       { path: 'contactUs', component: ContactUsComponent, title: 'Contact Us', },
       { path: 'gallery', component: GalleryComponent, title: 'Gallery', },
-      { path: 'book-offer/:offerId', component: BookOfferComponent, title: 'Book Offer', }
+      { path: 'book-offer/:offerId', component: BookOfferComponent, title: 'Book Offer', },
     ],
   },
   { path: '**', component: NotFoundComponent, title: 'not-found-page' },

@@ -1,24 +1,30 @@
 import { Component } from '@angular/core';
+import { AlertDialogComponent } from '../../alert-dialog/alert-dialog.component';
+import { GalleryService } from '../../../Services/gallery/gallery.service';
+import { MatDialog } from '@angular/material/dialog';
+import { Router, RouterLink } from '@angular/router';
+import { Gallery } from '../../../Models/gallery';
+import { ConfirmationDialogComponent } from '../../confirmation-dialog/confirmation-dialog.component';
+import { NgFor, NgIf } from '@angular/common';
+
 
 @Component({
   selector: 'app-show-images-of-gallery',
   standalone: true,
-  imports: [],
+  imports: [NgIf,NgFor,RouterLink],
   templateUrl: './show-images-of-gallery.component.html',
   styleUrl: './show-images-of-gallery.component.css'
 })
 export class ShowImagesOfGalleryComponent {
-  DestinationID: number = 0;
-  oldImages: Image[] = [];
+  Images: Gallery[] = [];
   isLocked = false;
-  selectedImage: Image | null = null;
+  selectedImage: Gallery | null = null;
 
-  constructor(private _location: Location, private _destinationService: DestinationServiceService, private _router: Router, private _dialog: MatDialog, private route: ActivatedRoute) {
-    const id = this.route.snapshot.paramMap.get('DestinationID');
-    this.DestinationID = id ? Number(id) : 0;
+  constructor(private _location: Location, private _galleryService: GalleryService, private _router: Router, private _dialog: MatDialog) {
+    
   }
   
-  showOverlay(image: Image): void {
+  showOverlay(image: Gallery): void {
     this.selectedImage = image;
   }
 
@@ -30,26 +36,18 @@ export class ShowImagesOfGalleryComponent {
   toggleLock(): void {
     this.isLocked = !this.isLocked;
   }
+
   ngOnInit(): void {
-    if (this.DestinationID > 0) {
       this.getIamegs();
-    } else {
-      this.openAlertDialog('Error', 'An error occurred, try again later.');
-      setTimeout(() => {
-        this._location.back();
-      }, 3000);
-    }
   }
 
   getIamegs(): void {
-    this._destinationService.GetImagesOfDestination(this.DestinationID).subscribe({
+    this._galleryService.GetGallery().subscribe({
       next: (res) => {
-        if (res != null)
-          this.oldImages = res;
-        // console.log(this.oldImages);
+          this.Images = res;
       },
       error: (err) => {
-        this.openAlertDialog('Error', 'An error occurred or the destinations do not contain images.');
+        this.openAlertDialog('Error', 'An error occurred or the gallery do not contain images.');
       }
     })
   }
@@ -66,7 +64,7 @@ export class ShowImagesOfGalleryComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-       this._destinationService.DeleteAllImagesFromDestination(this.DestinationID).subscribe({
+       this._galleryService.DeleteAllImagesFromGallery().subscribe({
           next: (response) => {
             this.openAlertDialog(
               'Success',
@@ -74,7 +72,7 @@ export class ShowImagesOfGalleryComponent {
             );
             setTimeout(() => {
                this.getIamegs();
-            }, 3000);
+            }, 2000);
           },
           error: (err) => {
             // console.error('Error occurred during deletion:', err);
@@ -84,6 +82,7 @@ export class ShowImagesOfGalleryComponent {
       }
     });
   }
+
 
   deleteImage(id: number) {
     const dialogRef = this._dialog.open(ConfirmationDialogComponent, {
@@ -96,19 +95,19 @@ export class ShowImagesOfGalleryComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this._destinationService.DeleteImageFromDestination(id).subscribe({
+        this._galleryService.DeleteImage(id).subscribe({
           next: (response) => {
             this.openAlertDialog(
               'Success',
-              'the destination has been deleted successfully'
+              'the image has been deleted successfully'
             );
             setTimeout(() => {
                this.getIamegs();
-            }, 3000);
+            }, 2000);
           },
           error: (err) => {
             // console.error('Error occurred during deletion:', err);
-            this.openAlertDialog('Error', 'Failed to delete your destination, please try again later');
+            this.openAlertDialog('Error', 'Failed to delete your image, please try again later');
           },
         });
       } else {
