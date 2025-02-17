@@ -28,6 +28,8 @@ import { ForgotPasswordComponent } from './Components/Admin/forgot-password/forg
 import { VerifyOtpComponent } from './Components/Admin/verify-otp/verify-otp.component';
 import { ResetPasswordComponent } from './Components/Admin/reset-password/reset-password.component';
 import { ShowContactUsComponent } from './Components/Admin/show-contact-us/show-contact-us.component';
+import { ShowImagesOfGalleryComponent } from './Components/Admin/show-images-of-gallery/show-images-of-gallery.component';
+import { AddImagesToGalleryComponent } from './Components/Admin/add-images-to-gallery/add-images-to-gallery.component';
 
 export const routes: Routes = [
   {
@@ -76,6 +78,8 @@ export const routes: Routes = [
       { path: 'add-offer',component:AddOfferComponent ,title:"Add New Offer"}, 
       {path: 'view-all-contactus',component:ShowContactUsComponent,title:"View All Contact Us"},  
       {path: 'view-Not-contacted-contactus',component:ShowContactUsComponent,title:"View Not contacted Contact Us"},  
+      {path: 'show-images-of-gallery',component:ShowImagesOfGalleryComponent,title:"Show Images Of Gallery"},
+      {path:'add-images-to-gallery',component:AddImagesToGalleryComponent,title:"Add Images To Gallery"}
     ]
   },
 
