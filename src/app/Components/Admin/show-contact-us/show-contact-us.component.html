@@ -1,0 +1,63 @@
+<div class="container h-screen mx-auto p-6 mt-12 mb-10">
+    <div *ngIf="Contacts.length > 0; else noData" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div *ngFor="let Contact of Contacts"
+            class="card transition duration-300 transform hover:scale-105 hover:shadow-lg bg-gray-800 text-white rounded-xl overflow-hidden">
+            <div class="p-4 border-b border-gray-700 text-lg font-semibold">{{Contact.name}}</div>
+            <div class="p-4 space-y-2">
+                <div class="flex flex-col">
+                    <span class="text-gray-400 text-sm">Message:</span>
+                    <div class="bg-gray-900 text-white p-2 rounded-md max-h-24 overflow-y-auto whitespace-pre-line">
+                        {{Contact.message}}
+                    </div>
+                </div>
+                <div class="flex justify-between text-sm mt-2">
+                    <span class="text-gray-400">Email:</span>
+                    <span class="text-gray-300">{{Contact.email}}</span>
+                </div>
+                <div class="flex justify-between text-sm mt-2">
+                    <span class="text-gray-400">Phone:</span>
+                    <span class="text-gray-300">{{Contact.phone}}</span>
+                </div>
+                <div class="flex justify-between text-sm mt-2">
+                    <span class="text-gray-400">Contact Time:</span>
+                    <span class="text-gray-300">{{Contact.createdTime}}</span>
+                </div>
+                <div class="flex justify-between text-sm mt-3">
+                    <span class="text-gray-400">Status:</span>
+                    <span class="px-2 py-1 text-sm rounded-md"
+                        [ngClass]="Contact.isContacted ? 'bg-green-500 text-white' : 'bg-red-500 text-white'">
+                        {{ Contact.isContacted ? 'Contacted' : 'Pending' }}
+                    </span>
+                </div>
+                <hr class="line my-12" />
+
+                <div [ngClass]="Contact.isContacted ? 'deletebtn' : ''" class="flex justify-between text-sm mt-2">
+
+                    <button (click)="markAsContacted(Contact.id)" *ngIf="!Contact.isContacted" class="cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg
+border-blue-600
+border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px]
+active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">
+                        Mark as contacted
+                    </button>
+                    <button (click)="deleteContact(Contact.id)" class="cursor-pointer transition-all bg-red-500 text-white px-6 py-2 rounded-lg
+                             border-red-600
+border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px]
+active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #noData>
+        <div class="flex flex-col gap-4 w-full h-screen flex items-center justify-center">
+            <div
+                class="w-20 h-20 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full">
+                <div
+                    class="w-16 h-16 border-4 border-transparent text-red-400 text-2xl animate-spin flex items-center justify-center border-t-red-400 rounded-full">
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>

@@ -8,14 +8,14 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { NgFor, NgIf } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
 import { ContactusService } from '../../Services/contactUs/contactus.service';
 import { ContactUs } from '../../Models/contact-us';
 @Component({
   selector: 'app-contact-us',
   standalone: true,
-  imports: [NgIf, ReactiveFormsModule, NgFor, FormsModule],
+  imports: [NgIf, ReactiveFormsModule, NgFor, FormsModule,NgClass],
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.css',
 })
@@ -130,16 +130,19 @@ export class ContactUsComponent implements OnInit {
   ContactUsForm: FormGroup;
   codeOfCountry: string = '';
   contactUsData: ContactUs[] = [];
+  isdark !:boolean
 
   constructor(
     private _ContactusService: ContactusService,
     private _router: Router,
     private _dialog: MatDialog
   ) {
+    if(localStorage.getItem('theme'))
+      this.isdark = localStorage.getItem('theme') === 'dark' ? true : false;
     this.ContactUsForm = new FormGroup({
       name: new FormControl('', [
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9]{3,50}$'),
+        Validators.pattern('^[a-zA-Z0-9 ]{3,50}$'),
         Validators.minLength(5),
         Validators.maxLength(50),
       ]),
@@ -180,14 +183,14 @@ export class ContactUsComponent implements OnInit {
       this._ContactusService.AddContactUs(this.ContactUsForm.value).subscribe(
         (response) => {
           //console.log('Admin registered successfully:', response);
-          this.openAlertDialog('Success', response);
+          this.openAlertDialog('Success', "Your contact request has been received, you will be contacted.");
           setTimeout(() => {
             this._router.navigateByUrl('/home');
           }, 3000);
         },
         (error) => {
-          // console.error('contact failed:', error);
-          this.openAlertDialog('Error', error.error);
+        // console.error('contact failed:', error);
+          this.openAlertDialog('Error', "An error occurred, try again later.");
           // Reset the phone number back to the original value
           this.ContactUsForm.get('phone')?.setValue(originalPhoneNumber);
         }

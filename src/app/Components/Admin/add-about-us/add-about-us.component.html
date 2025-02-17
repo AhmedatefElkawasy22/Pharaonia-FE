@@ -32,13 +32,13 @@
               *ngIf="AddAboutUsForm.get('text')?.errors?.['required']"
               class="text-red-500 text-sm mt-1"
             >
-              Message is required.
+              Text is required.
             </p>
             <p
               *ngIf="AddAboutUsForm.get('text')?.errors?.['pattern']"
               class="text-red-500 text-sm mt-1"
             >
-              Message must be 5-300 characters long.
+              Text must be 5-300 characters long.
             </p>
           </div>
         </div>

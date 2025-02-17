@@ -11,7 +11,7 @@ import { Router, RouterLink } from '@angular/router';
 export class HeaderComponent implements OnInit {
   isDarkMode: boolean = false;
 
-  constructor(private _router: Router) { }
+  constructor(private _router: Router) {}
 
   ngOnInit(): void {
     // Check the saved theme in localStorage
@@ -39,15 +39,14 @@ export class HeaderComponent implements OnInit {
   }
 
 
-
-  closeDropdown(detailsElement: HTMLDetailsElement, link: string) {
-      detailsElement.open = false;
+  closeDropdown(detailsElement: HTMLDetailsElement) {
     setTimeout(() => {
-      this._router.navigateByUrl(link);
+      detailsElement.open = false;
     }, 100);
   }
   
   
+
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }

@@ -5,6 +5,7 @@ import { environment } from '../../../environment/environment';
 import { Offer } from '../../Models/offer';
 import { AccountServiceService } from '../account/account-service.service';
 import { Image } from '../../Models/image';
+import { BookOffer } from '../../Models/book-offer';
 
 @Injectable({
   providedIn: 'root',
@@ -161,4 +162,61 @@ export class OfferService {
       return of(null);
     }
   }
-}
+
+  // book offer 
+  GetAllBookings():Observable<BookOffer[] | null>
+  {
+    const token = localStorage.getItem("token");
+    if (token && this._accountService.isTokenValid()) {
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+      return this._http.get<BookOffer[]>(`${environment.BaseURL}/Get-All-Bookings`,{headers});
+    } else {
+      this._accountService.logout();
+      return of(null);
+    }
+  }
+
+  GetBookingById(Id:number):Observable<BookOffer | null>
+  {
+    const token = localStorage.getItem("token");
+    if (token && this._accountService.isTokenValid()) {
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+      return this._http.get<BookOffer>(`${environment.BaseURL}/Get-Booking-Offer-By-ID/${Id}`, {headers});
+    } else {
+      this._accountService.logout();
+      return of(null);
+    }
+  }
+
+  GetBookingsByOfferId(Id:number):Observable<BookOffer[] | null>
+  {
+    const token = localStorage.getItem("token");
+    if (token && this._accountService.isTokenValid()) {
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+      return this._http.get<BookOffer[]>(`${environment.BaseURL}/Get-All-Bookings-By-OfferId/${Id}`, {headers});
+    } else {
+      this._accountService.logout();
+      return of(null);
+    }
+  }
+  
+  AddBookingoffer(Id:number,Body:any): Observable<any>
+  {
+    const token = localStorage.getItem("token");
+    if (token && this._accountService.isTokenValid()) {
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+      return this._http.post(`${environment.BaseURL}/Add-Book-Offer/${Id}`,Body,{responseType: 'text' , headers});
+    } else {
+      this._accountService.logout();
+      return of(null);
+    }
+  }
+} 

@@ -1,0 +1,48 @@
+.card {
+    width: 100%;
+    background: #1f2937; 
+    font-family: "Inter", sans-serif;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card__title {
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    font-size: 1rem;
+    background: #111827; 
+    border-bottom: 1px solid #374151;
+}
+
+.card__data {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card__data .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card__data span {
+    font-weight: 500;
+}
+
+.card__data .status {
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+}
+
+
+.deletebtn{
+    justify-content: center;
+    align-items: center;
+}
