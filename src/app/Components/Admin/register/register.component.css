@@ -1,10 +1,7 @@
-body {
-    background-color: #f7f7f7;
-    font-family: 'Poppins', sans-serif;
-  }
+
   
   .login-page, .register-page {
-    /* background-image: url('background-image.jpg'); */
+    margin-top: 70px;
     background-size: cover;
     background-position: center;
   }

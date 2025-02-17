@@ -20,7 +20,7 @@ export class ShowImagesOfGalleryComponent {
   isLocked = false;
   selectedImage: Gallery | null = null;
 
-  constructor(private _location: Location, private _galleryService: GalleryService, private _router: Router, private _dialog: MatDialog) {
+  constructor( private _galleryService: GalleryService, private _router: Router, private _dialog: MatDialog) {
     
   }
   

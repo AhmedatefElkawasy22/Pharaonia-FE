@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl,FormGroup,FormsModule,ReactiveFormsModule,Validators} from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { NgClass, NgFor, NgIf } from '@angular/common';
@@ -147,7 +153,7 @@ export class ContactUsComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       message: new FormControl('', [
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9 ,.]{5,500}$')
+        Validators.pattern('^[a-zA-Z0-9 ,.]{5,500}$'),
       ]),
     });
   }
@@ -162,7 +168,6 @@ export class ContactUsComponent implements OnInit {
     }
   }
 
-
   onSubmit() {
     if (this.ContactUsForm.valid) {
       const phoneNumber = this.ContactUsForm.get('phone')?.value;
@@ -173,7 +178,7 @@ export class ContactUsComponent implements OnInit {
 
       this.ContactUsForm.get('phone')?.setValue(modifiedPhoneNumber);
 
-     // console.log('data as json', this.ContactUsForm.value);
+      // console.log('data as json', this.ContactUsForm.value);
 
       this._ContactusService.AddContactUs(this.ContactUsForm.value).subscribe(
         (response) => {

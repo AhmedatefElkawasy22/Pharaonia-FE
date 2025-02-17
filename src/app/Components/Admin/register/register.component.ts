@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { AccountServiceService } from '../../../Services/account/account-service.service';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from '../../alert-dialog/alert-dialog.component';
-import { NgFor, NgIf } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [NgIf, ReactiveFormsModule, NgFor, FormsModule],
+  imports: [NgIf, ReactiveFormsModule, NgFor, FormsModule,NgClass],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -123,6 +123,7 @@ export class RegisterComponent implements OnInit {
   ];
   UserRegisterForm: FormGroup;
   codeOfCountry: string = '';
+  isDarkMode!:boolean;
 
   constructor(
     private _accountService: AccountServiceService,
@@ -167,8 +168,10 @@ export class RegisterComponent implements OnInit {
     // Check and apply theme from localStorage on init
     if (theme === 'dark' || localStorage.getItem('darkMode') === 'true') {
       document.documentElement.classList.add('dark');
+      this.isDarkMode = true;
     } else {
       document.documentElement.classList.remove('dark');
+      this.isDarkMode = false;
     }
   }
   
