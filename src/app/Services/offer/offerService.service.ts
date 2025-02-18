@@ -219,4 +219,33 @@ export class OfferService {
       return of(null);
     }
   }
+
+  MarkOnBookOfferIsContacted(Id:number): Observable<any>
+  {
+    const token = localStorage.getItem("token");
+    if (token && this._accountService.isTokenValid()) {
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+      return this._http.put(`${environment.BaseURL}/Mark-On-Book-Offer-Is-Contacted/${Id}`, {}, { responseType: 'text',headers });
+    } else {
+      this._accountService.logout();
+      return of(null);
+    }
+  }
+
+  DeleteBookOffer(Id:number) : Observable<any>
+  {
+    const token = localStorage.getItem("token");
+    if (token && this._accountService.isTokenValid()) {
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+      return this._http.delete(`${environment.BaseURL}/Delete-book-offer/${Id}`,{responseType: 'text' , headers});
+    } else {
+      this._accountService.logout();
+      return of(null);
+    }
+  }
+
 } 

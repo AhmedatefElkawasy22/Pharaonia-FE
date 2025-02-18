@@ -29,7 +29,7 @@ export class AddDestinationComponent {
 
     this.AddDestination = this.fb.group({
       Name: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{3,50}$')]],
-      Description: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ,.]{5,500}$')]],
+      Description: ['', [Validators.required,Validators.minLength(5),Validators.maxLength(1000)]],
       DestinationCategory: ['0', [Validators.required]],
       Images: this.fb.array([this.createImageControl()]),
     });

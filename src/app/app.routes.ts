@@ -32,6 +32,7 @@ import { ShowImagesOfGalleryComponent } from './Components/Admin/show-images-of-
 import { AddImagesToGalleryComponent } from './Components/Admin/add-images-to-gallery/add-images-to-gallery.component';
 import { AddAboutUSComponent } from './Components/Admin/add-about-us/add-about-us.component';
 import { UpdateAboutUSComponent } from './Components/Admin/update-about-us/update-about-us.component';
+import { ShowBookingsOfOffersComponent } from './Components/Admin/show-bookings-of-offers/show-bookings-of-offers.component';
 
 export const routes: Routes = [
   {
@@ -83,7 +84,10 @@ export const routes: Routes = [
       {path: 'show-images-of-gallery',component:ShowImagesOfGalleryComponent,title:"Show Images Of Gallery"},
       {path:'add-images-to-gallery',component:AddImagesToGalleryComponent,title:"Add Images To Gallery"},
       {path: "add-about-us",component:AddAboutUSComponent,title:"Add About Us"},
-      {path: "update-about-us",component:UpdateAboutUSComponent,title:"Update About Us"}
+      {path: "update-about-us",component:UpdateAboutUSComponent,title:"Update About Us"},
+      {path: "all-bookings-of-offers",component:ShowBookingsOfOffersComponent,title:"All Bookings Of Offers"},
+      {path: "all-bookings-of-offers-based-on-offer/:offerId",component:ShowBookingsOfOffersComponent,title:"All Bookings Of One Offer"},
+      {path: "not-contacted-bookings-of-offers",component:ShowBookingsOfOffersComponent,title:"Not Contacted Bookings Of Offers"},
     ]
   },
   {

@@ -2,23 +2,14 @@ export interface BookOffer {
     id: number,
     name: string,
     email: string,
-    phoneNumber: string,
     nationality: string,
+    phoneNumber: string,
     arrivalDate: string,
     departureDate: string,
     numberOfAllPeople: number,
     numberOfChildren: number,
+    requirements: string,
     createdTime: string,
-    offer: { 
-        id: number,
-        nameOfDestination: string,
-        description: string,
-        price: number,
-        offerExpirationNumber: number,
-        typeOfOfferExpirationDate: number,
-        offerDurationNumber: number,
-        typeOfOfferDuration: number,
-        expireOn: string,
-        images: string[]
-    }
+    isContacted: boolean,
+    offerId: number
 }

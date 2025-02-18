@@ -27,12 +27,12 @@
                         class="block text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
                     <textarea type="text" id="Description" formControlName="Description"
                         class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
-                        placeholder="Enter a description"></textarea>
+                        placeholder="Enter a Description"></textarea>
                     <div *ngIf="AddOffer.get('Description')?.touched">
                         <p *ngIf="AddOffer.get('Description')?.errors?.['required']" class="text-red-500 text-sm mt-1">
                             Description is required.</p>
-                        <p *ngIf="AddOffer.get('Description')?.errors?.['pattern']" class="text-red-500 text-sm mt-1">
-                            Description must be 5-300 characters long.</p>
+                        <p *ngIf="AddOffer.get('Description')?.errors?.['minlength'] || AddOffer.get('Description')?.errors?.['maxlength']" class="text-red-500 text-sm mt-1">
+                            Description must be 5-1000 characters long.</p>
                     </div>
                 </div>
 

@@ -27,7 +27,7 @@ export class AddOfferComponent {
 
     this.AddOffer = this.fb.group({
       NameOfDestination: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{3,50}$')]],
-      Description: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ,.]{5,500}$')]],
+      Description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(1000)]],
       Price: ['', [Validators.required, Validators.pattern('^[0-9]+(\\.[0-9]+)?$')]],
       OfferExpirationNumber: ['', [Validators.required, Validators.pattern('^[0-9]{1,10}$')]],
       TypeOfOfferExpirationDate: ['0', [Validators.required]],

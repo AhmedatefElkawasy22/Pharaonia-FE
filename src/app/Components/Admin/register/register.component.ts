@@ -195,7 +195,7 @@ export class RegisterComponent implements OnInit {
 
       this.UserRegisterForm.get('PhoneNumber')?.setValue(modifiedPhoneNumber);
 
-      console.log("data as json", this.UserRegisterForm.value)
+      // console.log("data as json", this.UserRegisterForm.value)
 
       this._accountService.register(this.UserRegisterForm.value).subscribe(
         (response) => {
@@ -210,7 +210,7 @@ export class RegisterComponent implements OnInit {
           
         },
         (error) => {
-          console.error('Registration failed:', error);
+          // console.error('Registration failed:', error);
           this.openAlertDialog(
             'Error',
             error.error

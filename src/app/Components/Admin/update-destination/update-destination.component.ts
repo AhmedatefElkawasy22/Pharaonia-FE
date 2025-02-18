@@ -38,8 +38,8 @@ export class UpdateDestinationComponent {
       ]),
       description: new FormControl(this.destination.description, [
         Validators.required,
-        Validators.minLength(10),
-        Validators.maxLength(500),
+        Validators.minLength(5),
+        Validators.maxLength(1000),
       ]),
       destinationCategory: new FormControl(
         this.destination.destinationCategory === 'InEgypt' ? 0 : 1,

@@ -1,1 +1,175 @@
-<p>book-offer works!</p>
+<div class="mt-20 min-h-screen flex items-center justify-center" [ngClass]="{'dark:bg-gray-900': isDarkMode}">
+    <div
+        class="grid grid-cols-1 md:grid-cols-1 gap-8 w-full max-w-5xl bg-white dark:bg-gray-800 shadow-lg rounded-xl overflow-hidden">
+        <div class="p-8">
+            <h2 class="text-2xl font-semibold text-center mb-6 text-gray-800 dark:text-gray-200">
+                Book the Offer
+            </h2>
+            <form [formGroup]="bookOffer" (ngSubmit)="onSubmit()" class="space-y-4">
+
+                <!-- Name Input -->
+                <div>
+                    <label for="Name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
+                    <input type="text" id="Name" formControlName="name"
+                        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+                        placeholder="Enter your name" />
+                    <div *ngIf="bookOffer.get('name')?.touched">
+                        <p *ngIf="bookOffer.get('name')?.errors?.['required']" class="text-red-500 text-sm mt-1">
+                            Name is required.</p>
+                        <p *ngIf="bookOffer.get('name')?.errors?.['pattern']" class="text-red-500 text-sm mt-1">
+                            Name must be 3-50 characters long and contain only letters/numbers.</p>
+                    </div>
+                </div>
+
+                <!-- email Input -->
+                <div>
+                    <label for="Email" class="block text-sm font-medium text-gray-800 dark:text-gray-200">Email</label>
+                    <input type="email" id="Email" formControlName="email"
+                        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+                        placeholder="Enter your Email" />
+                    <div *ngIf="bookOffer.get('email')?.touched">
+                        <p *ngIf="bookOffer.get('email')?.errors?.['required']" class="text-red-500 text-sm mt-1">Email
+                            is required.</p>
+                        <p *ngIf="bookOffer.get('email')?.errors?.['email']" class="text-red-500 text-sm mt-1">
+                            Email must be valid.</p>
+                    </div>
+                </div>
+
+                <!-- nationality Input -->
+                <div>
+                    <label for="nationality"
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nationality</label>
+                    <input type="text" id="nationality" formControlName="nationality"
+                        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+                        placeholder="Enter Your nationality" />
+                    <div *ngIf="bookOffer.get('nationality')?.touched">
+                        <p *ngIf="bookOffer.get('nationality')?.errors?.['required']" class="text-red-500 text-sm mt-1">
+                            Nationality is required.</p>
+                        <p *ngIf="bookOffer.get('nationality')?.errors?.['pattern']" class="text-red-500 text-sm mt-1">
+                            Nationality must be 3-100 characters long and contain only letters/numbers.</p>
+                    </div>
+                </div>
+
+                <!-- Phone Number Input -->
+                <div>
+                    <label for="PhoneNumber" class="block text-sm font-medium text-gray-800 dark:text-gray-200">Phone
+                        Number</label>
+                    <div class="flex gap-2 mt-1">
+                        <select id="countryCode"
+                            class="w-36 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+                            [(ngModel)]="selectedCountryCode" [ngModelOptions]="{ standalone: true }">
+                            <option value="">Select Code</option>
+                            <option *ngFor="let country of countryCodes" [value]="country.code">{{ country.name }} ({{
+                                country.code }})</option>
+                        </select>
+
+                        <input type="text" id="PhoneNumber" formControlName="phoneNumber"
+                            class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+                            placeholder="Enter your phone number" />
+                    </div>
+                    <div *ngIf="bookOffer.get('phoneNumber')?.touched">
+                        <p *ngIf="bookOffer.get('phoneNumber')?.errors?.['required']" class="text-red-500 text-sm mt-1">
+                            Phone number is required.</p>
+                        <p *ngIf="bookOffer.get('phoneNumber')?.errors?.['pattern']" class="text-red-500 text-sm mt-1">
+                            Enter a valid phone number (10-15 digits).</p>
+                    </div>
+                </div>
+
+                <!-- Arrival Date Input -->
+                <div>
+                    <label for="arrivalDate" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Arrival
+                        Date</label>
+                    <input type="date" id="arrivalDate" formControlName="arrivalDate"
+                        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500" />
+                    <div *ngIf="bookOffer.get('arrivalDate')?.touched">
+                        <p *ngIf="bookOffer.get('arrivalDate')?.errors?.['required']" class="text-red-500 text-sm mt-1">
+                            Arrival date is required.</p>
+                        <p *ngIf="bookOffer.get('arrivalDate')?.errors?.['pastDate']" class="text-red-500 text-sm mt-1">
+                            Date cannot be in the past.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Departure Date Input -->
+                <div>
+                    <label for="departureDate"
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-300">Departure Date</label>
+                    <input type="date" id="departureDate" formControlName="departureDate"
+                        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500" />
+                    <div *ngIf="bookOffer.get('departureDate')?.touched">
+                        <p *ngIf="bookOffer.get('departureDate')?.errors?.['required']"
+                            class="text-red-500 text-sm mt-1">
+                            Departure date is required.</p>
+                        <p *ngIf="bookOffer.get('departureDate')?.errors?.['pastDate']"
+                            class="text-red-500 text-sm mt-1">
+                            Date cannot be in the past.
+                        </p>
+                        <p *ngIf="bookOffer.hasError('invalidDateRange')"
+                            class="text-red-500 text-sm mt-1">
+                            Departure date must be after arrival date.</p>
+                    </div>
+                </div>
+
+                <!-- Number of All People Input -->
+                <div>
+                    <label for="numberOfAllPeople"
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-300">Number of People</label>
+                    <input type="number" id="numberOfAllPeople" formControlName="numberOfAllPeople" min="1" max="1000"
+                        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+                        placeholder="Enter number of people" />
+                    <div *ngIf="bookOffer.get('numberOfAllPeople')?.touched">
+                        <p *ngIf="bookOffer.get('numberOfAllPeople')?.errors?.['required']"
+                            class="text-red-500 text-sm mt-1">
+                            Number of people is required.</p>
+                        <p *ngIf="bookOffer.get('numberOfAllPeople')?.errors?.['pattern']"
+                            class="text-red-500 text-sm mt-1">
+                            Please enter a valid number (1-1000).</p>
+                    </div>
+                </div>
+
+                <!-- Number of Children Input -->
+                <div>
+                    <label for="numberOfChildren"
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-300">Number of Children</label>
+                    <input type="number" id="numberOfChildren" formControlName="numberOfChildren" min="0" max="1000"
+                        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+                        placeholder="Enter number of children" />
+                    <div *ngIf="bookOffer.get('numberOfChildren')?.touched">
+                        <p *ngIf="bookOffer.get('numberOfChildren')?.errors?.['required']"
+                            class="text-red-500 text-sm mt-1">
+                            Number of children is required.</p>
+                        <p *ngIf="bookOffer.get('numberOfChildren')?.errors?.['pattern']"
+                            class="text-red-500 text-sm mt-1">
+                            Please enter a valid number (0-1000).</p>
+                        <p *ngIf="bookOffer.hasError('invalidChildrenCount')" class="text-red-500 text-sm mt-1">
+                            Number of children cannot exceed total number of people.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- requirements Input -->
+                <div>
+                    <label for="requirements"
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-300">requirements</label>
+                    <textarea type="text" id="requirements" formControlName="requirements"
+                        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
+                        placeholder="Enter a requirements"></textarea>
+                    <div *ngIf="bookOffer.get('requirements')?.touched">
+                        <p *ngIf="bookOffer.get('requirements')?.errors?.['required']"
+                            class="text-red-500 text-sm mt-1">
+                            requirements is required.</p>
+                        <p *ngIf="bookOffer.get('requirements')?.errors?.['pattern']" class="text-red-500 text-sm mt-1">
+                            requirements must be 5-3000 characters long.</p>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit"
+                    class="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 disabled:opacity-50"
+                    [disabled]="bookOffer.invalid ">
+                    book the offer
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

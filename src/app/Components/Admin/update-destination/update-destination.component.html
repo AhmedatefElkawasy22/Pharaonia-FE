@@ -29,10 +29,8 @@
             <div *ngIf="UpdateDestination.get('description')?.touched">
               <p *ngIf="UpdateDestination.get('description')?.errors?.['required']" class="text-red-500 text-sm mt-1">
                 Description is required.</p>
-              <p *ngIf="UpdateDestination.get('description')?.errors?.['minlength']" class="text-red-500 text-sm mt-1">
-                Description must be at least 10 characters long.</p>
-                <p *ngIf="UpdateDestination.get('description')?.errors?.['maxlength']" class="text-red-500 text-sm mt-1">
-                  Description must be at most 500 characters long.</p>
+                <p *ngIf="UpdateDestination.get('description')?.errors?.['minlength'] || UpdateDestination.get('description')?.errors?.['maxlength']" class="text-red-500 text-sm mt-1">
+                  Description must be 5-1000 characters long.</p>
             </div>
           </div>
   

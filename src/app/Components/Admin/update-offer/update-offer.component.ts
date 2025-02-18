@@ -39,7 +39,7 @@ export class UpdateOfferComponent {
     const TypeOfOfferDuration = this.Offer.offerDuration.split(' ')[1] === 'Days' ? '0' : '1';
     this.UpdateOffer = this.fb.group({
       NameOfDestination: [this.Offer.nameOfDestination, [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{3,50}$')]],
-      Description: [this.Offer.description, [Validators.required, Validators.pattern('^[a-zA-Z0-9 ,.]{5,500}$')]],
+      Description: [this.Offer.description, [Validators.required, Validators.minLength(5), Validators.maxLength(1000)]],
       Price: [this.Offer.price, [Validators.required, Validators.pattern('^[0-9]+(\\.[0-9]+)?$')]],
       OfferExpirationNumber: [OfferExpirationNumber, [Validators.required, Validators.pattern('^[0-9]{1,10}$')]],
       TypeOfOfferExpirationDate: [TypeOfOfferExpirationDate, [Validators.required]],

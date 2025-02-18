@@ -51,13 +51,12 @@
 
   <div class="flex justify-center mt-6">
     <div class="btns" *ngIf="IsAdmin==true">
+      <button class="btn btn-outline btn-primary" routerLink="/admin/all-bookings-of-offers-based-on-offer/{{offer.id}}">Bookings of this offer</button>
       <button *ngIf="offer.expired==true" class="btn btn-outline btn-primary" (click)="Reactive()">Reactive</button>
       <button class="btn btn-outline btn-primary" (click)="Update()">Update Offer</button>
-      <button class="btn btn-outline btn-primary" routerLink="/admin/update-iamges-of-offer/{{offer.id}}">update
-        images</button>
+      <button class="btn btn-outline btn-primary" routerLink="/admin/update-iamges-of-offer/{{offer.id}}">update  images</button>
       <button class="btn btn-outline btn-primary" (click)="Delete()">Delete</button>
-      <button class="btn btn-outline btn-primary" routerLink="/admin/add-images-to-offer/{{offer.id}}">Add
-        images</button>
+      <button class="btn btn-outline btn-primary" routerLink="/admin/add-images-to-offer/{{offer.id}}">Add images</button>
     </div>
     <button *ngIf="IsAdmin!=true" routerLink="/book-offer/{{offer.id}}" class="btn w-full">Book Now</button>
   </div>
