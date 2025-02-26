@@ -7,27 +7,36 @@ import {
 } from '@angular/forms';
 import { AboutUsService } from '../../../Services/aboutUs/about-us.service';
 import { Router } from '@angular/router';
-import { NgIf, Location } from '@angular/common';
+import { NgIf, Location, NgClass } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from '../../alert-dialog/alert-dialog.component';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../state/app.state';
 
 @Component({
   selector: 'app-update-about-us',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule, NgIf , NgClass],
   templateUrl: './update-about-us.component.html',
   styleUrl: './update-about-us.component.css',
 })
 export class UpdateAboutUSComponent implements OnInit {
   UpdateAboutUsForm: FormGroup;
   oldValue !: string ;
+  isDarkMode !: boolean;
 
   constructor(
     private _AboutUsService: AboutUsService,
     private _router: Router,
     private _dialog: MatDialog,
-    private _location: Location
+    private _location: Location,
+    private _Store: Store<AppState>
   ) {
+    //check theme
+    this._Store.select(state=>state.theme).subscribe(theme=>{
+      this.isDarkMode = theme === 'dark' ? true : false;
+    })
+    //form
     this.UpdateAboutUsForm = new FormGroup({
       text: new FormControl('', [
         Validators.required,

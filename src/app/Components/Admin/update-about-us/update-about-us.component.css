@@ -3,24 +3,6 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-.login-page,
-.register-page {
-  background-size: cover;
-  background-position: center;
-}
-
-.login-box,
-.register-box {
-  background-color: #ffffff;
-  border-radius: 10px;
-  animation: fadeIn 1.2s ease-in-out;
-  transition: transform 0.3s ease-in-out;
-}
-
-.login-box:hover,
-.register-box:hover {
-  transform: scale(1.02);
-}
 
 form {
   animation: slideIn 1.2s ease-in-out;

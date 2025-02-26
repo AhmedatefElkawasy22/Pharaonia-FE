@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 import { NgClass, NgIf } from '@angular/common';
 import { AlertDialogComponent } from '../../alert-dialog/alert-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../state/app.state';
 
 @Component({
   selector: 'app-add-about-us',
@@ -25,9 +27,12 @@ export class AddAboutUSComponent implements OnInit {
   constructor(
     private _AboutUsService: AboutUsService,
     private _router: Router,
-    private _dialog: MatDialog
+    private _dialog: MatDialog,
+    private _Store: Store<AppState>
   ) {
-    this.IsDark = localStorage.getItem('theme') === 'dark';
+    this._Store.select(state=>state.theme).subscribe(theme=>{
+      this.IsDark = theme === 'dark' ? true : false;
+    })
     this.AddAboutUsForm = new FormGroup({
       text: new FormControl('', [
         Validators.required,

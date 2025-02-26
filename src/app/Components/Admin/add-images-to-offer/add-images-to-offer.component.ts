@@ -5,11 +5,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { NgClass, NgIf, Location, NgFor } from '@angular/common';
 import { AlertDialogComponent } from '../../alert-dialog/alert-dialog.component';
+import { AppState } from '../../../state/app.state';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-add-images-to-offer',
   standalone: true,
-  imports: [NgIf, NgFor, NgClass,ReactiveFormsModule],
+  imports: [NgIf, NgFor, NgClass, ReactiveFormsModule],
   templateUrl: './add-images-to-offer.component.html',
   styleUrl: './add-images-to-offer.component.css'
 })
@@ -19,7 +21,8 @@ export class AddImagesToOfferComponent {
   isDarkMode!: boolean
   offerId!: number;
 
-  constructor(private fb: FormBuilder, private _location: Location, private _offerService: OfferService, private _router: Router, private _dialog: MatDialog, private _activatedRoute: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private _location: Location, private _offerService: OfferService, private _router: Router, private _dialog: MatDialog, private _activatedRoute: ActivatedRoute, private _Store: Store<AppState>) {
+    //get id & check on it 
     const id = this._activatedRoute.snapshot.paramMap.get('offerId');
     this.offerId = id ? Number(id) : 0;
     if (this.offerId == 0) {
@@ -28,7 +31,11 @@ export class AddImagesToOfferComponent {
         this._location.back();
       }, 2000);
     }
-    this.isDarkMode = localStorage.getItem('theme') === 'dark';
+    //cehck theme
+    this._Store.select(state => state.theme).subscribe(theme => {
+      this.isDarkMode = theme === 'dark' ? true : false;
+    })
+    //form
     this.AddImagesToOffer = this.fb.group({
       Images: this.fb.array([]),
     });

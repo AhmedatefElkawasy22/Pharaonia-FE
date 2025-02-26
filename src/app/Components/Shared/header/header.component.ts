@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { ChangeTheme } from '../../../state/theme/theme.action';
+import { AsyncPipe } from '@angular/common';
+import { AppState } from '../../../state/app.state';
 
 @Component({
   selector: 'app-header',
@@ -9,20 +14,19 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit {
-  isDarkMode: boolean = false;
+  isDarkMode !: boolean;
+  Theme$ !: Observable<string>;
 
-  constructor(private _router: Router) {}
+  constructor(private _router: Router,private _store: Store<AppState>) {
+    this.Theme$ = this._store.select("theme");
+  }
 
   ngOnInit(): void {
     // Check the saved theme in localStorage
-    const theme = localStorage.getItem('theme');
-    if (theme === 'dark') {
-      this.isDarkMode = true;
-      document.documentElement.classList.add('dark');
-    } else {
-      this.isDarkMode = false;
-      document.documentElement.classList.remove('dark');
-    }
+     this.Theme$.subscribe(value => {
+      this.isDarkMode = value === 'dark';
+      document.documentElement.classList.toggle('dark', value === 'dark');
+    });
   }
 
   toggleDarkMode(event: Event): void {
@@ -31,10 +35,10 @@ export class HeaderComponent implements OnInit {
 
     if (isChecked) {
       document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
+      this._store.dispatch(ChangeTheme({theme: 'dark'}));
     } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+      document.documentElement.classList.remove('dark'); 
+      this._store.dispatch(ChangeTheme({theme: 'light'}));
     }
   }
 
@@ -44,8 +48,6 @@ export class HeaderComponent implements OnInit {
       detailsElement.open = false;
     }, 100);
   }
-  
-  
 
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });

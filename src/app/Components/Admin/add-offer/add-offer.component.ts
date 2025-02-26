@@ -5,6 +5,8 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { OfferService } from '../../../Services/offer/offerService.service';
+import { AppState } from '../../../state/app.state';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-add-offer',
@@ -15,16 +17,20 @@ import { OfferService } from '../../../Services/offer/offerService.service';
 })
 export class AddOfferComponent {
   AddOffer: FormGroup;
-  isDarkMode: boolean;
+  isDarkMode!: boolean;
 
   constructor(
     private _router: Router,
     private _dialog: MatDialog,
     private _offerService: OfferService,
     private fb: FormBuilder,
+    private _Store: Store<AppState>
   ) {
-    this.isDarkMode = localStorage.getItem('theme') === 'dark';
-
+    //cehck theme
+    this._Store.select(state => state.theme).subscribe(theme => {
+      this.isDarkMode = theme === 'dark' ? true : false;
+    })
+    //form
     this.AddOffer = this.fb.group({
       NameOfDestination: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{3,50}$')]],
       Description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(1000)]],

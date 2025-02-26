@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AlertDialogComponent } from '../../alert-dialog/alert-dialog.component';
 import { DestinationServiceService } from '../../../Services/destination/destination-service.service';
+import { AppState } from '../../../state/app.state';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-add-destination',
@@ -16,7 +18,7 @@ import { DestinationServiceService } from '../../../Services/destination/destina
 })
 export class AddDestinationComponent {
   AddDestination: FormGroup;
-  isDarkMode: boolean;
+  isDarkMode !: boolean;
   isSubmitting: boolean = false;
 
   constructor(
@@ -24,8 +26,12 @@ export class AddDestinationComponent {
     private _dialog: MatDialog,
     private _destinationService: DestinationServiceService,
     private fb: FormBuilder,
+    private _Store: Store<AppState>
   ) {
-    this.isDarkMode = localStorage.getItem('theme') === 'dark';
+    //check theme
+    this._Store.select(state=>state.theme).subscribe(theme=>{
+      this.isDarkMode = theme === 'dark' ? true : false;
+    })
 
     this.AddDestination = this.fb.group({
       Name: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{3,50}$')]],

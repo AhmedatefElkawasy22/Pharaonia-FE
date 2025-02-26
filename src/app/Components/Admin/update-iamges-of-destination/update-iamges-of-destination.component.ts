@@ -38,6 +38,7 @@ export class UpdateIamgesOfDestinationComponent implements OnInit {
   toggleLock(): void {
     this.isLocked = !this.isLocked;
   }
+  
   ngOnInit(): void {
     if (this.DestinationID > 0) {
       this.getIamegs();

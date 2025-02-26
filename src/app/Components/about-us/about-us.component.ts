@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AboutUsService } from '../../Services/aboutUs/about-us.service';
 import { NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { AppState } from '../../state/app.state';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-about-us',
@@ -11,11 +13,14 @@ import { RouterLink } from '@angular/router';
   styleUrl: './about-us.component.css'
 })
 export class AboutUsComponent implements OnInit {
-  IsDarkMode: boolean;
+  IsDarkMode!: boolean;
   aboutUs: string = '';
 
-  constructor(private _aboutUsService: AboutUsService) {
-    this.IsDarkMode = localStorage.getItem('theme') === 'dark';
+  constructor(private _aboutUsService: AboutUsService,private _Store: Store<AppState>) {
+    //check theme
+    this._Store.select(state => state.theme).subscribe(theme => {
+      this.IsDarkMode = theme === 'dark' ? true : false;
+    })
   }
 
   ngOnInit(): void {

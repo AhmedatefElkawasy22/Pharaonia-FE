@@ -6,6 +6,8 @@ import { OfferService } from '../../../Services/offer/offerService.service';
 import { Offer } from '../../../Models/offer';
 import { AlertDialogComponent } from '../../alert-dialog/alert-dialog.component';
 import { NgIf,Location, NgClass } from '@angular/common';
+import { AppState } from '../../../state/app.state';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-update-offer',
@@ -16,7 +18,7 @@ import { NgIf,Location, NgClass } from '@angular/common';
 })
 export class UpdateOfferComponent {
   UpdateOffer !: FormGroup;
-  isDarkMode: boolean;
+  isDarkMode !: boolean;
   Offer!: Offer;
 
   constructor(
@@ -24,9 +26,14 @@ export class UpdateOfferComponent {
     private _dialog: MatDialog,
     private _offerService: OfferService,
     private fb: FormBuilder,
-    private _location: Location
+    private _location: Location,
+    private _Store: Store<AppState>
   ) {
-    this.isDarkMode = localStorage.getItem('theme') === 'dark';
+    //check theme
+    this._Store.select(state => state.theme).subscribe(theme => {
+      this.isDarkMode = theme === 'dark' ? true : false;
+    })
+    
     this.Offer = history.state.offer ;
     if (!this.Offer) {
       this.openAlertDialog('Error', 'A problem occurred, try again later.');

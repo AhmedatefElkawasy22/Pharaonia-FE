@@ -1,46 +1,31 @@
-<div
-  class="register-page min-h-screen flex items-center justify-center px-4" [ngClass]="{'dark:bg-gray-900': IsDark}"
->
+<div class="register-page min-h-screen flex items-center justify-center px-4">
   <div
-    class="grid grid-cols-1 md:grid-cols-1 gap-8 w-full max-w-5xl bg-white dark:bg-gray-800 shadow-lg rounded-xl overflow-hidden"
-  >
+    class="grid grid-cols-1 md:grid-cols-1 gap-8 w-full max-w-5xl bg-white dark:bg-gray-900 shadow-lg rounded-xl overflow-hidden"
+    [ngClass]="{'dark:bg-gray-800': IsDark}">
     <!-- AboutUs Form -->
     <div class="p-8">
-      <h2
-        class="text-2xl font-semibold text-center mb-6 text-gray-800 dark:text-gray-200"
-      >
-       Add About US
+      <h2 class="text-2xl font-semibold text-center mb-6 text-gray-800 dark:text-gray-200">
+        Add About US
       </h2>
       <form [formGroup]="AddAboutUsForm" (ngSubmit)="onSubmit()">
         <!-- AboutUs Input -->
         <div>
-          <textarea
-            type="text"
-            formControlName="text"
+          <textarea type="text" formControlName="text"
             class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:focus:ring-blue-500"
-            placeholder="Type Here"
-          ></textarea>
+            placeholder="Type Here"></textarea>
           <div *ngIf="AddAboutUsForm.get('text')?.touched">
-            <p
-              *ngIf="AddAboutUsForm.get('text')?.errors?.['required']"
-              class="text-red-500 text-sm mt-1"
-            >
+            <p *ngIf="AddAboutUsForm.get('text')?.errors?.['required']" class="text-red-500 text-sm mt-1">
               Text is required.
             </p>
-            <p
-              *ngIf="AddAboutUsForm.get('text')?.errors?.['minlength'] || AddAboutUsForm.get('text')?.errors?.['maxlength']"
-              class="text-red-500 text-sm mt-1"
-            >
-            The input must be between 5 and 1000 characters long.
+            <p *ngIf="AddAboutUsForm.get('text')?.errors?.['minlength'] || AddAboutUsForm.get('text')?.errors?.['maxlength']"
+              class="text-red-500 text-sm mt-1">
+              The input must be between 5 and 1000 characters long.
             </p>
           </div>
         </div>
         <!-- Submit Button -->
-        <button
-          [disabled]="AddAboutUsForm.invalid"
-          type="submit"
-          class="w-full py-3 bg-primary text-white font-semibold rounded-lg shadow hover:bg-primary-dark dark:bg-primary-dark dark:hover:bg-primary"
-        >
+        <button [disabled]="AddAboutUsForm.invalid" type="submit"
+          class="w-full py-3 bg-primary text-white font-semibold rounded-lg shadow hover:bg-primary-dark dark:bg-primary-dark dark:hover:bg-primary">
           Add
         </button>
       </form>

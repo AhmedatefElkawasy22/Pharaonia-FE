@@ -6,6 +6,8 @@ import { NgIf , Location, NgClass} from '@angular/common';
 import { AlertDialogComponent } from '../../alert-dialog/alert-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DestinationServiceService } from '../../../Services/destination/destination-service.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../state/app.state';
 
 @Component({
   selector: 'app-update-destination',
@@ -17,10 +19,19 @@ import { DestinationServiceService } from '../../../Services/destination/destina
 export class UpdateDestinationComponent {
   destination !: Destination ;
   UpdateDestination: FormGroup;
-  isDarkMode :boolean;
+  isDarkMode !:boolean;
 
-  constructor(private _activatedRoute: ActivatedRoute,private _router:Router,private _dialog: MatDialog,private _location:Location,private _destiantionService: DestinationServiceService) {
-    this.isDarkMode = localStorage.getItem('theme') === 'dark';
+  constructor(private _activatedRoute: ActivatedRoute,
+    private _router:Router,private _dialog: MatDialog,
+    private _location:Location, 
+    private _destiantionService: DestinationServiceService,
+    private _Store: Store<AppState>
+  ) {
+    //check theme
+    this._Store.select(state => state.theme).subscribe(theme => {
+      this.isDarkMode = theme === 'dark' ? true : false;
+    })
+
     if (history.state.destination) {
       this.destination = history.state.destination ;
     }

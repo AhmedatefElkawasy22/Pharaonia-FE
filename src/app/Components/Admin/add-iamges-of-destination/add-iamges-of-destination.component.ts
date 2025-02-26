@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule,  Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DestinationServiceService } from '../../../Services/destination/destination-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { NgFor,Location, NgIf, NgClass } from '@angular/common';
+import { NgFor, Location, NgIf, NgClass } from '@angular/common';
 import { AlertDialogComponent } from '../../alert-dialog/alert-dialog.component';
+import { AppState } from '../../../state/app.state';
+import { Store } from '@ngrx/store';
 
 
 @Component({
   selector: 'app-add-iamges-of-destination',
   standalone: true,
-  imports: [NgFor,NgIf,NgClass,ReactiveFormsModule],
+  imports: [NgFor, NgIf, NgClass, ReactiveFormsModule],
   templateUrl: './add-iamges-of-destination.component.html',
   styleUrl: './add-iamges-of-destination.component.css'
 })
@@ -20,23 +22,27 @@ export class AddIamgesOfDestinationComponent {
   isDarkMode!: boolean
   DestinationID!: number;
 
-  constructor(private fb: FormBuilder,private _location: Location, private _destinationService: DestinationServiceService, private _router: Router, private _dialog: MatDialog,private route: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private _location: Location, private _destinationService: DestinationServiceService, private _router: Router, private _dialog: MatDialog, private route: ActivatedRoute, private _Store: Store<AppState>) {
+    //get & check on id  
     const id = this.route.snapshot.paramMap.get('DestinationID');
     this.DestinationID = id ? Number(id) : 0;
-    if(this.DestinationID==0)
-    {
-      this.openAlertDialog("Error","An error occurred, try again later.");
+    if (this.DestinationID == 0) {
+      this.openAlertDialog("Error", "An error occurred, try again later.");
       setTimeout(() => {
         this._location.back();
       }, 2000);
     }
-    this.isDarkMode = localStorage.getItem('theme') === 'dark';
+    //check theme
+    this._Store.select(state => state.theme).subscribe(theme => {
+      this.isDarkMode = theme === 'dark' ? true : false;
+    })
+    //form
     this.AddImagesToDestination = this.fb.group({
       Images: this.fb.array([]),
     });
   }
 
-  
+
 
   onSubmit() {
     if (this.AddImagesToDestination.invalid || this.isSubmitting) {
@@ -53,8 +59,8 @@ export class AddIamgesOfDestinationComponent {
         formData.append('Images', file);
       }
     });
-    
-    this._destinationService.AddImageToDestination(this.DestinationID,formData).subscribe({
+
+    this._destinationService.AddImageToDestination(this.DestinationID, formData).subscribe({
       next: (res) => {
         this.openAlertDialog('Success', res);
         this.isSubmitting = false;

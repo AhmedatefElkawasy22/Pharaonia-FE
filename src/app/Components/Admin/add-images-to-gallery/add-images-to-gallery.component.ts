@@ -5,6 +5,8 @@ import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Va
 import { GalleryService } from '../../../Services/gallery/gallery.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { AppState } from '../../../state/app.state';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-add-images-to-gallery',
@@ -18,8 +20,12 @@ export class AddImagesToGalleryComponent {
   isSubmitting: boolean = false;
   isDarkMode!: boolean
 
-  constructor(private fb: FormBuilder, private _location: Location, private _galleryService: GalleryService, private _router: Router, private _dialog: MatDialog) {
-    this.isDarkMode = localStorage.getItem('theme') === 'dark';
+  constructor(private fb: FormBuilder, private _location: Location, private _galleryService: GalleryService, private _router: Router, private _dialog: MatDialog, private _Store: Store<AppState>) {
+    //check theme
+    this._Store.select(state => state.theme).subscribe(theme => {
+      this.isDarkMode = theme === 'dark' ? true : false;
+    })
+    //form
     this.AddImagesToGallery = this.fb.group({
       Images: this.fb.array([this.createImageControl()]),
     });
