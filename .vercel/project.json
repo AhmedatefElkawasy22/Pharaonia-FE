@@ -1,1 +1,7 @@
-{"projectId":"prj_4ggtdfS7PTDUI6KkVLjlX3ESNgU8","orgId":"team_CNUy66L4MLKOqVfhx7ZyxgAE"}
+{
+    "projectId": "prj_4ggtdfS7PTDUI6KkVLjlX3ESNgU8",
+    "orgId": "team_CNUy66L4MLKOqVfhx7ZyxgAE",
+    "env": {
+        "NODE_VERSION": "20.17.0"
+      }
+}
